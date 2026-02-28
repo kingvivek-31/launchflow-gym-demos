@@ -1,0 +1,155 @@
+/* ============================================================
+   vajra_style.css — Vajra The Gym
+============================================================ */
+
+/* Hero background */
+.hero-bg {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Grid texture overlay */
+.grid-texture {
+  background-image:
+    linear-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-track .marquee-content {
+  animation: marquee 28s linear infinite;
+}
+
+/* Testimonial marquee */
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollRight {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.testimonial-track {
+  overflow: hidden;
+  width: 100%;
+}
+
+.testimonial-track .testimonial-inner {
+  display: flex;
+  width: max-content;
+  animation: scrollLeft 40s linear infinite;
+}
+
+.testimonial-track.reverse .testimonial-inner {
+  animation: scrollRight 40s linear infinite;
+}
+
+.testimonial-track:hover .testimonial-inner {
+  animation-play-state: paused;
+}
+
+/* Scroll-triggered fade-up */
+.fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  /* Handled by Framer Motion */
+}
+
+.fade-up.delay-100 {
+  transition-delay: 0.1s;
+}
+
+.fade-up.delay-200 {
+  transition-delay: 0.2s;
+}
+
+.fade-up.delay-300 {
+  transition-delay: 0.3s;
+}
+
+/* Handled by Framer Motion */
+
+/* Counter number formatting */
+.counter-suffix::after {
+  content: '+';
+}
+
+/* Facility card hover border */
+.facility-card .absolute.h-0\.5 {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3F4F6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 3px;
+}
+
+/* Selection color */
+::selection {
+  background: #D4AF37;
+  color: #ffffff;
+}
+
+/* Day / Time button active states */
+.day-btn.active {
+  background-color: #D4AF37;
+  border-color: #D4AF37;
+  color: #ffffff;
+}
+
+.time-btn.active {
+  background-color: #D4AF37;
+  border-color: #D4AF37;
+  color: #ffffff;
+}
+
+/* Nav solid state */
+#navbar.scrolled {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
