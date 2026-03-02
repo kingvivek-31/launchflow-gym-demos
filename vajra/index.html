@@ -168,6 +168,10 @@
       <div
         class="absolute top-1/2 right-0 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#D4AF37]/10 blur-[120px] pointer-events-none">
       </div>
+      <!-- Pulsing background (replicates requested Framer Motion pulse) -->
+      <div id="hero-pulse-bg"
+        class="absolute top-1/2 right-0 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#D4AF37]/10 blur-[120px] pointer-events-none">
+      </div>
 
       <div class="relative max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center py-20 lg:py-0">
         <!-- Left -->
@@ -175,7 +179,8 @@
           <span
             class="inline-block text-[#D4AF37] font-condensed font-700 uppercase tracking-[0.3em] text-sm mb-4">Rohini's
             No.1 Gym</span>
-          <h1
+          <!-- ID added so we can animate this element with Motion One (browser-friendly) -->
+          <h1 id="hero-h1"
             class="font-condensed font-black uppercase text-6xl sm:text-7xl lg:text-8xl xl:text-9xl leading-none text-gray-900 mb-6">
             Strength<br />Forged<br /><span class="text-[#D4AF37]">Here.</span>
           </h1>
@@ -671,6 +676,9 @@
 
   <script type="module">
     import { animate, inView, stagger, scroll } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm";
+    // Note: Framer Motion is a React library and cannot be used directly in plain HTML.
+    // The page already imports Motion One above; we'll use Motion One to replicate the
+    // requested Framer-style animations in the browser.
 
     window.addEventListener('load', async () => {
 
@@ -708,17 +716,20 @@
         );
       });
 
-      // 1. Hero animations
-      animate("h1", { opacity: [0, 1], y: [40, 0] }, { duration: 0.8, easing: [0.16, 1, 0.3, 1], delay: 0.2 });
+      // 1. Hero animations (replicating the requested Framer Motion effects using Motion One)
+      const heroH1 = document.getElementById('hero-h1');
+      if (heroH1) {
+        // Slide-up effect: initial opacity 0 and y=30 -> animate to opacity 1 and y=0
+        // matching the user's requested transition: duration: 0.8
+        heroH1.style.opacity = 0;
+        animate(heroH1, { opacity: [0, 1], y: [30, 0] }, { duration: 0.8, easing: [0.16, 1, 0.3, 1], delay: 0.2 });
+      }
       animate("h1 + p", { opacity: [0, 1], y: [20, 0] }, { duration: 0.8, delay: 0.4, easing: "easeOut" });
 
-      // 2. Parallax on hero image
-      const heroBg = document.querySelector(".hero-bg img");
-      if (heroBg) {
-        scroll(
-          animate(heroBg, { y: [0, 100] }),
-          { target: document.querySelector(".hero-bg"), offset: ["start start", "end start"] }
-        );
+      // Pulsing hero background for depth (scale [1,1.05,1], repeat infinitely, duration 10s)
+      const heroPulse = document.getElementById('hero-pulse-bg');
+      if (heroPulse) {
+        animate(heroPulse, { scale: [1, 1.05, 1] }, { duration: 10, repeat: Infinity, easing: 'ease-in-out' });
       }
 
       // 3. Staggered grid items (Cards)

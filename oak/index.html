@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oak Fitness — Where Strength Meets Nature</title>
+  <meta name="description"
+    content="Oak Fitness is your premier fitness destination. 25,000 sq ft of world-class training space where strength meets nature." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="oak_style.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal: { DEFAULT: '#00C8B4', dark: '#00b5a3', glow: 'rgba(0,200,180,0.15)' },
+            black: { DEFAULT: '#0A0A0A' },
+            darker: '#05050A',
+            card: '#0A0A0F',
+          },
+          fontFamily: {
+            condensed: ['Barlow Condensed', 'sans-serif'],
+            body: ['Barlow', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="text-white font-body antialiased overflow-x-hidden" style="background:#0A0A0A; overflow: hidden;">
+
+  <!-- ============================================================
+     LOADING SCREEN
+============================================================ -->
+  <div id="loading-screen"
+    class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center font-condensed">
+    <div id="loading-logo" class="flex flex-col items-center opacity-0 scale-90">
+      <!-- L-bracket loader decoration -->
+      <div class="relative mb-8">
+        <!-- Top-left bracket -->
+        <div class="absolute -top-4 -left-4 w-6 h-6 border-t-2 border-l-2 border-[#20B2AA]"></div>
+        <!-- Bottom-right bracket -->
+        <div class="absolute -bottom-4 -right-4 w-6 h-6 border-b-2 border-r-2 border-[#20B2AA]"></div>
+        <img src="oak-logo.png" alt="Oak Fitness Logo" class="h-24 md:h-36 object-contain"
+          onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='flex';" />
+        <div id="fallback-logo" class="hidden flex-col items-center">
+          <div class="flex items-center gap-2">
+            <span class="text-white text-6xl md:text-8xl font-black tracking-[0.25em] drop-shadow-md">OAK</span>
+          </div>
+          <span class="text-[#20B2AA] text-sm md:text-xl font-bold uppercase tracking-[0.5em] mt-2">Fitness</span>
+        </div>
+      </div>
+      <!-- Loading bar -->
+      <div class="w-32 h-px bg-[#20B2AA]/20 relative overflow-hidden mt-2">
+        <div id="loading-bar" class="absolute left-0 top-0 h-full bg-[#20B2AA] w-0 transition-none"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+     MOVING BACKGROUND OBJECTS (Subtle teal glows)
+============================================================ -->
+  <div id="moving-bg" class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+    <div
+      class="moving-shape teal-glow-orb absolute top-[15%] left-[5%] w-[50vw] h-[50vw] rounded-full bg-[#20B2AA]/5 blur-[150px]">
+    </div>
+    <div class="moving-shape absolute top-[65%] right-[5%] w-[40vw] h-[40vw] rounded-full bg-[#20B2AA]/4 blur-[130px]">
+    </div>
+    <div
+      class="moving-shape absolute bottom-[-5%] left-[35%] w-[55vw] h-[55vw] rounded-full bg-[#20B2AA]/3 blur-[160px]">
+    </div>
+  </div>
+
+  <div class="relative z-10">
+
+    <!-- ============================================================
+       SECTION 1: NAVIGATION
+============================================================ -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4">
+      <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="#" class="flex-shrink-0">
+          <div class="flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300">
+            <div class="flex items-center gap-2">
+              <img src="oak-logo.png" alt="Oak Fitness Logo" class="h-8 md:h-10 object-contain"
+                onerror="this.style.display='none'; document.getElementById('nav-fallback').style.display='flex';" />
+              <div id="nav-fallback" class="hidden items-center gap-1">
+                <!-- Teal leaf/oak icon -->
+                <svg class="w-7 h-7 text-[#20B2AA]" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20C19,20 22,3 22,3,21,5 14,5.25 17,8Z" />
+                </svg>
+                <span class="font-condensed font-black text-3xl md:text-4xl tracking-[0.15em] text-white">OAK</span>
+              </div>
+            </div>
+            <span
+              class="font-condensed font-bold text-[9px] md:text-[11px] uppercase tracking-[0.4em] text-[#20B2AA] mt-0.5 text-center w-full">Fitness</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <ul class="hidden lg:flex items-center gap-8">
+          <li><a href="#about"
+              class="text-xs font-condensed font-600 uppercase tracking-widest text-white/70 hover:text-[#20B2AA] transition-colors duration-200">About</a>
+          </li>
+          <li><a href="#facilities"
+              class="text-xs font-condensed font-600 uppercase tracking-widest text-white/70 hover:text-[#20B2AA] transition-colors duration-200">Facilities</a>
+          </li>
+          <li><a href="#classes"
+              class="text-xs font-condensed font-600 uppercase tracking-widest text-white/70 hover:text-[#20B2AA] transition-colors duration-200">Classes</a>
+          </li>
+          <li><a href="#trainers"
+              class="text-xs font-condensed font-600 uppercase tracking-widest text-white/70 hover:text-[#20B2AA] transition-colors duration-200">Trainers</a>
+          </li>
+          <li><a href="#membership"
+              class="text-xs font-condensed font-600 uppercase tracking-widest text-white/70 hover:text-[#20B2AA] transition-colors duration-200">Membership</a>
+          </li>
+          <li><a href="#blog"
+              class="text-xs font-condensed font-600 uppercase tracking-widest text-white/70 hover:text-[#20B2AA] transition-colors duration-200">Blog</a>
+          </li>
+        </ul>
+
+        <!-- CTA Buttons -->
+        <div class="hidden lg:flex items-center gap-3">
+          <a href="#booking"
+            class="px-5 py-2 text-xs font-condensed font-700 uppercase tracking-widest border border-[#20B2AA]/50 text-[#20B2AA] hover:bg-[#20B2AA]/10 transition-all duration-200">Book
+            a Tour</a>
+          <a href="#membership" class="btn-teal text-xs py-2 px-5">Join Now</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="lg:hidden text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Panel -->
+      <div id="mobile-menu" class="hidden lg:hidden mt-4">
+        <div class="px-6 py-6 flex flex-col gap-4">
+          <a href="#about"
+            class="mobile-link text-sm font-condensed uppercase tracking-widest text-white/70 hover:text-[#20B2AA]">About</a>
+          <a href="#facilities"
+            class="mobile-link text-sm font-condensed uppercase tracking-widest text-white/70 hover:text-[#20B2AA]">Facilities</a>
+          <a href="#classes"
+            class="mobile-link text-sm font-condensed uppercase tracking-widest text-white/70 hover:text-[#20B2AA]">Classes</a>
+          <a href="#trainers"
+            class="mobile-link text-sm font-condensed uppercase tracking-widest text-white/70 hover:text-[#20B2AA]">Trainers</a>
+          <a href="#membership"
+            class="mobile-link text-sm font-condensed uppercase tracking-widest text-white/70 hover:text-[#20B2AA]">Membership</a>
+          <a href="#blog"
+            class="mobile-link text-sm font-condensed uppercase tracking-widest text-white/70 hover:text-[#20B2AA]">Blog</a>
+          <div class="flex gap-3 pt-2">
+            <a href="#booking"
+              class="flex-1 text-center px-4 py-2 text-xs font-condensed uppercase tracking-widest border border-[#20B2AA]/50 text-[#20B2AA]">Book
+              a Tour</a>
+            <a href="#membership"
+              class="flex-1 text-center px-4 py-2 text-xs font-condensed uppercase tracking-widest bg-[#20B2AA] text-black font-black">Join
+              Now</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============================================================
+       SECTION 2: HERO
+============================================================ -->
+    <section class="relative min-h-screen flex flex-col justify-center overflow-hidden hero-bg pt-24">
+      <!-- Grid overlay -->
+      <div class="absolute inset-0 grid-texture pointer-events-none"></div>
+
+      <!-- Glow orbs -->
+      <div class="glow-orb glow-orb-1" style="top:-10%;right:-5%;"></div>
+      <div class="glow-orb glow-orb-2" style="bottom:5%;left:-8%;"></div>
+
+      <div class="relative max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center py-20 lg:py-0">
+        <!-- Left: Text -->
+        <div>
+          <!-- Tagline -->
+          <div class="flex items-center gap-3 mb-6 hero-animate delay-1">
+            <div class="w-8 h-px bg-[#00C8B4]"></div>
+            <span class="text-[#00C8B4] font-condensed font-700 uppercase tracking-[0.3em] text-sm">Where Strength Meets
+              Nature</span>
+          </div>
+
+          <!-- Main headline -->
+          <h1 id="hero-h1"
+            class="hero-animate delay-2 font-condensed font-black uppercase text-6xl sm:text-7xl lg:text-8xl xl:text-[5.5rem] leading-none text-white mb-6">
+            Strength<br />Forged<br /><span class="text-[#00C8B4]">Here.</span>
+          </h1>
+
+          <p class="hero-animate delay-3 text-white/50 text-lg max-w-md mb-10 leading-relaxed">
+            Oak Fitness — 25,000 sq ft of world-class training space where strength meets nature. Where champions are
+            made.
+          </p>
+
+          <div class="hero-animate delay-4 flex flex-wrap gap-4 mb-10">
+            <a href="#membership" class="btn-teal text-sm">Start Free Trial</a>
+            <a href="#facilities" class="btn-ghost text-sm">Explore Facilities</a>
+          </div>
+
+          <!-- WhatsApp CTA (matching oakfitness.in) -->
+          <a href="https://wa.me/918920306202" target="_blank"
+            class="hero-animate delay-5 flex items-center gap-3 text-[#00C8B4] hover:text-white transition-colors group">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            </svg>
+            <span class="font-condensed font-700 uppercase tracking-widest text-sm">Visit us for a Free Trial</span>
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Right: Hero Image with L-brackets -->
+        <div class="hero-animate delay-3 relative hidden lg:block">
+          <!-- Vertical teal divider -->
+          <div class="absolute left-[-24px] top-[10%] bottom-[10%] w-px bg-[#00C8B4]/30"></div>
+
+          <div class="l-bracket-wrap relative rounded-none overflow-hidden h-[560px]">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&auto=format&fit=crop&q=80"
+              alt="Oak Fitness — Premium gym floor" class="w-full h-full object-cover filter brightness-75" />
+            <!-- Dark gradient overlay -->
+            <div class="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-black/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          </div>
+
+          <!-- Floating stat badge -->
+          <div class="absolute -bottom-6 -left-6 bg-black border border-[#00C8B4]/40 px-6 py-4">
+            <div class="text-[#00C8B4] font-condensed font-black text-3xl">3,000+</div>
+            <div class="text-white/50 text-xs uppercase tracking-widest">Active Members</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator">
+        <span class="scroll-indicator__label">Scroll</span>
+        <div class="scroll-indicator__line"></div>
+      </div>
+
+      <!-- Teal Marquee Strip (existing) -->
+      <div class="relative w-full bg-[#00C8B4] py-3 mt-16 lg:mt-8 overflow-hidden">
+        <div class="marquee-track flex items-center gap-0">
+          <div class="marquee-content flex items-center gap-0 shrink-0">
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Olympic
+              Lifting Zone</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Luxury
+              Locker Rooms</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Personal
+              Training</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Cardio
+              Theatre</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Spa
+              &amp; Recovery</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Group
+              Classes</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Nutrition
+              Bar</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">MMA
+              &amp; Combat Zone</span>
+            <span class="text-black/30 text-xl">·</span>
+          </div>
+          <div class="marquee-content flex items-center gap-0 shrink-0" aria-hidden="true">
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Olympic
+              Lifting Zone</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Luxury
+              Locker Rooms</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Personal
+              Training</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Cardio
+              Theatre</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Spa
+              &amp; Recovery</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Group
+              Classes</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">Nutrition
+              Bar</span>
+            <span class="text-black/30 text-xl">·</span>
+            <span
+              class="px-6 font-condensed font-700 uppercase text-sm tracking-widest text-black whitespace-nowrap">MMA
+              &amp; Combat Zone</span>
+            <span class="text-black/30 text-xl">·</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marquee Tags Strip (two rows, dark) -->
+      <div class="marquee-tags-wrap">
+        <!-- Row 1: left -->
+        <div class="marquee-tags-row">
+          <div class="marquee-tags-inner">
+            <!-- duplicated twice for seamless loop -->
+            <span class="marquee-tag"><span class="tag-dot"></span>Strength Training</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Olympic Lifting</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>CrossFit</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>HIIT</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Yoga &amp; Mobility</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Boxing</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>MMA &amp; Combat</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Powerlifting</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Functional Training</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Cardio Theatre</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Zumba</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Spinning</span>
+            <!-- duplicate for seamless -->
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Strength Training</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Olympic Lifting</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>CrossFit</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>HIIT</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Yoga &amp; Mobility</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Boxing</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>MMA &amp; Combat</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Powerlifting</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Functional Training</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Cardio Theatre</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Zumba</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Spinning</span>
+          </div>
+        </div>
+        <!-- Row 2: right (reverse) -->
+        <div class="marquee-tags-row reverse">
+          <div class="marquee-tags-inner">
+            <span class="marquee-tag"><span class="tag-dot"></span>Nutrition Bar</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Personal Training</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Spa &amp; Recovery</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Steam Room</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Cold Plunge</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Luxury Lockers</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Group Classes</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Body Transform</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Free Trial</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Expert Coaches</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Life Fitness Equipment</span>
+            <span class="marquee-tag"><span class="tag-dot"></span>Technogym</span>
+            <!-- duplicate -->
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Nutrition Bar</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Personal Training</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Spa &amp; Recovery</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Steam Room</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Cold Plunge</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Luxury Lockers</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Group Classes</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Body Transform</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Free Trial</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Expert Coaches</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Life Fitness Equipment</span>
+            <span class="marquee-tag" aria-hidden="true"><span class="tag-dot"></span>Technogym</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stat Counters -->
+      <div class="stats-bar">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 divide-x divide-[#20B2AA]/10">
+          <div class="px-8 py-10 text-center fade-up counter-wrapper">
+            <div class="font-condensed font-black text-5xl text-white counter" data-target="25000">0</div>
+            <div class="text-[#20B2AA] text-xs uppercase tracking-widest mt-1">Sq Ft Area</div>
+          </div>
+          <div class="px-8 py-10 text-center fade-up delay-100 counter-wrapper">
+            <div class="font-condensed font-black text-5xl text-white counter" data-target="60">0</div>
+            <div class="text-[#20B2AA] text-xs uppercase tracking-widest mt-1">Equipment Stations</div>
+          </div>
+          <div class="px-8 py-10 text-center fade-up delay-200 counter-wrapper">
+            <div class="font-condensed font-black text-5xl text-white counter" data-target="15">0</div>
+            <div class="text-[#20B2AA] text-xs uppercase tracking-widest mt-1">Expert Trainers</div>
+          </div>
+          <div class="px-8 py-10 text-center fade-up delay-300 counter-wrapper">
+            <div class="font-condensed font-black text-5xl text-white counter" data-target="3000">0</div>
+            <div class="text-[#20B2AA] text-xs uppercase tracking-widest mt-1">Active Members</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       SECTION 3: ABOUT
+============================================================ -->
+    <section id="about" class="py-28 about-section overflow-hidden" style="position:relative;">
+      <!-- Glow orbs -->
+      <div class="glow-orb glow-orb-2" style="top:10%;right:-5%;"></div>
+      <div class="glow-orb glow-orb-3" style="bottom:-15%;left:-10%;opacity:0.07;"></div>
+      <div class="relative z-[1] max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+        <!-- Left: Image with L-brackets -->
+        <div class="fade-up relative">
+          <div class="l-bracket-wrap relative overflow-hidden h-[520px]">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&auto=format&fit=crop&q=80"
+              alt="Oak Fitness interior — luxury gym floor" class="w-full h-full object-cover filter brightness-70" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+          </div>
+        </div>
+
+        <!-- Right: Content -->
+        <div class="fade-up delay-200">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-8 h-px bg-[#20B2AA]"></div>
+            <span class="text-[#20B2AA] font-condensed font-700 uppercase tracking-[0.3em] text-sm">Why Oak
+              Fitness</span>
+          </div>
+          <h2 class="font-condensed font-black uppercase text-5xl lg:text-6xl leading-none text-white mb-6">
+            Built For <span class="text-[#20B2AA]">Champions</span>
+          </h2>
+          <p class="text-white/50 text-base leading-relaxed mb-10">
+            Oak Fitness redefines what a gym can be. With over 25,000 sq ft of luxury training space and
+            equipment imported directly from Life Fitness and Technogym, we've created an environment worthy of your
+            ambitions — where strength meets nature.
+          </p>
+          <ul class="space-y-4 mb-10">
+            <li class="flex items-start gap-3">
+              <span
+                class="mt-0.5 w-5 h-5 rounded-full bg-[#20B2AA]/10 border border-[#20B2AA]/40 flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-[#20B2AA]" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" />
+                </svg>
+              </span>
+              <span class="text-white/70 text-sm">Our largest dedicated training floor</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span
+                class="mt-0.5 w-5 h-5 rounded-full bg-[#20B2AA]/10 border border-[#20B2AA]/40 flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-[#20B2AA]" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" />
+                </svg>
+              </span>
+              <span class="text-white/70 text-sm">Imported equipment — Life Fitness &amp; Technogym</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span
+                class="mt-0.5 w-5 h-5 rounded-full bg-[#20B2AA]/10 border border-[#20B2AA]/40 flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-[#20B2AA]" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" />
+                </svg>
+              </span>
+              <span class="text-white/70 text-sm">Internationally certified expert trainers</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span
+                class="mt-0.5 w-5 h-5 rounded-full bg-[#20B2AA]/10 border border-[#20B2AA]/40 flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-[#20B2AA]" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" />
+                </svg>
+              </span>
+              <span class="text-white/70 text-sm">5 dedicated training zones</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span
+                class="mt-0.5 w-5 h-5 rounded-full bg-[#20B2AA]/10 border border-[#20B2AA]/40 flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-[#20B2AA]" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" />
+                </svg>
+              </span>
+              <span class="text-white/70 text-sm">Luxury steam room &amp; sauna</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span
+                class="mt-0.5 w-5 h-5 rounded-full bg-[#20B2AA]/10 border border-[#20B2AA]/40 flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-[#20B2AA]" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" />
+                </svg>
+              </span>
+              <span class="text-white/70 text-sm">On-site Nutrition Bar &amp; supplement store</span>
+            </li>
+          </ul>
+          <a href="#facilities" class="btn-ghost text-sm inline-block">Explore the Gym</a>
+        </div>
+      </div>
+  </div><!-- close relative z wrapper -->
+  </section>
+
+  <!-- ============================================================
+       SECTION 4: BOOK A CLASS
+============================================================ -->
+  <section id="booking" class="py-28 section-dark border-t border-[#00C8B4]/10"
+    style="position:relative;overflow:hidden;">
+    <!-- Glow orbs -->
+    <div class="glow-orb glow-orb-1" style="top:-20%;left:50%;transform:translateX(-50%);"></div>
+    <div class="max-w-4xl mx-auto px-6 text-center fade-up" style="position:relative;z-index:1;">
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <div class="w-8 h-px bg-[#20B2AA]"></div>
+        <span class="text-[#20B2AA] font-condensed font-700 uppercase tracking-[0.3em] text-sm">Reserve Your
+          Spot</span>
+        <div class="w-8 h-px bg-[#20B2AA]"></div>
+      </div>
+      <h2 class="font-condensed font-black uppercase text-5xl lg:text-6xl leading-none text-white mb-4">Book
+        Your<br /><span class="text-[#20B2AA]">Session Today</span></h2>
+      <p class="text-white/50 mb-12 text-base">Pick your class, trainer, and time — we'll take care of the rest.</p>
+
+      <div class="booking-form rounded-none p-8 text-left">
+        <!-- Row 1: Dropdowns -->
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-xs font-condensed uppercase tracking-widest text-[#20B2AA] mb-2">Select
+              Service</label>
+            <select class="booking-input w-full px-4 py-3 text-sm font-body appearance-none cursor-pointer">
+              <option>Personal Training</option>
+              <option>Group Class</option>
+              <option>Zone Access</option>
+              <option>Spa &amp; Recovery</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-condensed uppercase tracking-widest text-[#20B2AA] mb-2">Select Class /
+              Zone</label>
+            <select class="booking-input w-full px-4 py-3 text-sm font-body appearance-none cursor-pointer">
+              <option>Powerlifting</option>
+              <option>HIIT</option>
+              <option>Yoga</option>
+              <option>Boxing</option>
+              <option>CrossFit</option>
+              <option>Zumba</option>
+              <option>Spinning</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 mb-8">
+          <div>
+            <label class="block text-xs font-condensed uppercase tracking-widest text-[#20B2AA] mb-2">Select
+              Trainer</label>
+            <select class="booking-input w-full px-4 py-3 text-sm font-body appearance-none cursor-pointer">
+              <option>No Preference</option>
+              <option>Vikram Singh</option>
+              <option>Priya Mehta</option>
+              <option>Anjali Rawat</option>
+              <option>Karan Thakur</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-condensed uppercase tracking-widest text-[#20B2AA] mb-2">Duration</label>
+            <select class="booking-input w-full px-4 py-3 text-sm font-body appearance-none cursor-pointer">
+              <option>45 Minutes</option>
+              <option>60 Minutes</option>
+              <option>75 Minutes</option>
+              <option>90 Minutes</option>
+            </select>
+          </div>
+        </div>
+        <!-- Day Selectors -->
+        <div class="mb-8">
+          <label class="block text-xs font-condensed uppercase tracking-widest text-[#20B2AA] mb-3">Select Day</label>
+          <div class="flex flex-wrap gap-2" id="day-selector">
+            <button class="day-btn active">Mon</button>
+            <button class="day-btn">Tue</button>
+            <button class="day-btn">Wed</button>
+            <button class="day-btn">Thu</button>
+            <button class="day-btn">Fri</button>
+            <button class="day-btn">Sat</button>
+            <button class="day-btn">Sun</button>
+          </div>
+        </div>
+        <!-- Time Slots -->
+        <div class="mb-8">
+          <label class="block text-xs font-condensed uppercase tracking-widest text-[#20B2AA] mb-3">Select
+            Time</label>
+          <div class="space-y-3">
+            <div>
+              <p class="text-white/30 text-xs uppercase tracking-widest mb-2">Morning</p>
+              <div class="flex flex-wrap gap-2" id="time-selector">
+                <button class="time-btn">6:00 AM</button>
+                <button class="time-btn active">7:00 AM</button>
+                <button class="time-btn">8:00 AM</button>
+                <button class="time-btn">9:00 AM</button>
+              </div>
+            </div>
+            <div>
+              <p class="text-white/30 text-xs uppercase tracking-widest mb-2">Afternoon</p>
+              <div class="flex flex-wrap gap-2">
+                <button class="time-btn">12:00 PM</button>
+                <button class="time-btn">1:00 PM</button>
+                <button class="time-btn">2:00 PM</button>
+              </div>
+            </div>
+            <div>
+              <p class="text-white/30 text-xs uppercase tracking-widest mb-2">Evening</p>
+              <div class="flex flex-wrap gap-2">
+                <button class="time-btn">5:00 PM</button>
+                <button class="time-btn">6:00 PM</button>
+                <button class="time-btn">7:00 PM</button>
+                <button class="time-btn">8:00 PM</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button onclick="alert('Session booked! We will confirm via WhatsApp.')"
+          class="w-full py-4 bg-[#20B2AA] text-black font-condensed font-black uppercase tracking-widest text-sm hover:bg-[#17a39c] transition-all duration-200">Reserve
+          My Spot</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5: FACILITIES GRID
+============================================================ -->
+  <section id="facilities" class="py-28 about-section border-t border-[#00C8B4]/10"
+    style="position:relative;overflow:hidden;">
+    <!-- Glow orbs -->
+    <div class="glow-orb glow-orb-2" style="top:0;right:-5%;"></div>
+    <div class="glow-orb glow-orb-1" style="bottom:-10%;left:-5%;"></div>
+    <div class="max-w-7xl mx-auto px-6" style="position:relative;z-index:1;">
+      <div class="text-center mb-16 fade-up">
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <div class="w-8 h-px bg-[#20B2AA]"></div>
+          <span class="text-[#20B2AA] font-condensed font-700 uppercase tracking-[0.3em] text-sm">Our
+            Facilities</span>
+          <div class="w-8 h-px bg-[#20B2AA]"></div>
+        </div>
+        <h2 class="font-condensed font-black uppercase text-5xl lg:text-6xl leading-none text-white mb-4">
+          World Class <span class="text-[#20B2AA]">Facilities</span>
+        </h2>
+        <div class="teal-underline-center"></div>
+        <p class="text-white/50 text-base max-w-lg mx-auto mt-6">Six world-class zones designed for every kind of
+          athlete.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#20B2AA]/8">
+        <!-- Card 1 -->
+        <div class="facility-card card-left-accent p-8 fade-up">
+          <div class="text-[#20B2AA] mb-5">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12h2l2-6 4 12 4-10 2 6h4" />
+            </svg>
+          </div>
+          <h3 class="font-condensed font-black uppercase text-2xl text-white mb-3">Olympic Strength Zone</h3>
+          <p class="text-white/40 text-sm leading-relaxed">Platforms, racks, Olympic bars, and all the iron you need
+            to forge world-class strength.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="facility-card card-left-accent p-8 fade-up delay-100">
+          <div class="text-[#20B2AA] mb-5">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="font-condensed font-black uppercase text-2xl text-white mb-3">Cardio Theatre</h3>
+          <p class="text-white/40 text-sm leading-relaxed">50+ premium cardio machines with individual entertainment
+            screens for an immersive session.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="facility-card card-left-accent p-8 fade-up delay-200">
+          <div class="text-[#20B2AA] mb-5">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" stroke-width="1.5" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4" />
+            </svg>
+          </div>
+          <h3 class="font-condensed font-black uppercase text-2xl text-white mb-3">Combat &amp; MMA Zone</h3>
+          <p class="text-white/40 text-sm leading-relaxed">Heavy bags, mats, cage, and everything you need for boxing,
+            BJJ, and MMA training.</p>
+        </div>
+        <!-- Card 4 -->
+        <div class="facility-card card-left-accent p-8 fade-up delay-100">
+          <div class="text-[#20B2AA] mb-5">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v18M3 12h18" />
+            </svg>
+          </div>
+          <h3 class="font-condensed font-black uppercase text-2xl text-white mb-3">Yoga &amp; Stretching Studio</h3>
+          <p class="text-white/40 text-sm leading-relaxed">A serene, dedicated space for yoga, mobility work, and
+            active recovery sessions.</p>
+        </div>
+        <!-- Card 5 -->
+        <div class="facility-card card-left-accent p-8 fade-up delay-200">
+          <div class="text-[#20B2AA] mb-5">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h3 class="font-condensed font-black uppercase text-2xl text-white mb-3">Spa &amp; Recovery Suite</h3>
+          <p class="text-white/40 text-sm leading-relaxed">Luxury steam room, sauna, and cold plunge to accelerate
+            recovery and restore performance.</p>
+        </div>
+        <!-- Card 6 -->
+        <div class="facility-card card-left-accent p-8 fade-up delay-300">
+          <div class="text-[#20B2AA] mb-5">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
+            </svg>
+          </div>
+          <h3 class="font-condensed font-black uppercase text-2xl text-white mb-3">Nutrition Bar &amp; Store</h3>
+          <p class="text-white/40 text-sm leading-relaxed">Fresh smoothies, meal-prep bowls, and a full supplement
+            store stocked on-site.</p>
+        </div>
+      </div>
+    </div>
+    </div><!-- close facilities z wrapper -->
+  </section>
+
+  <!-- CLASSES, TRAINERS, MEMBERSHIP, TESTIMONIALS, EVENTS, APP, BLOG, CTA, FOOTER loaded from sections.html -->
+  <div id="sections-placeholder"></div>
+
+  </div> <!-- End relative wrapper -->
+
+  <script src="oak_sections.js"></script>
+  <script src="oak_main.js"></script>
+
+  <script type="module">
+    import { animate, inView, stagger, scroll } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm";
+
+    window.addEventListener('load', async () => {
+
+      // 0. Loading Screen
+      const loadingScreen = document.getElementById('loading-screen');
+      const loadingLogo = document.getElementById('loading-logo');
+      const loadingBar = document.getElementById('loading-bar');
+
+      if (loadingScreen && loadingLogo) {
+        // Animate logo in
+        await animate(loadingLogo, { opacity: [0, 1], scale: [0.9, 1] }, { duration: 0.7, easing: [0.16, 1, 0.3, 1] }).finished;
+
+        // Animate loading bar
+        if (loadingBar) {
+          animate(loadingBar, { width: ["0%", "100%"] }, { duration: 0.8, easing: [0.16, 1, 0.3, 1] });
+        }
+        await new Promise(r => setTimeout(r, 900));
+
+        // Hide loading screen
+        await animate(loadingScreen, { opacity: [1, 0], y: [0, "-8%"] }, { duration: 0.7, easing: [0.33, 1, 0.68, 1] }).finished;
+        loadingScreen.style.display = 'none';
+        document.body.style.overflow = "";
+      }
+
+      // Floating Background Objects
+      const shapes = document.querySelectorAll('.moving-shape');
+      shapes.forEach((shape, i) => {
+        animate(shape,
+          {
+            x: [0, (i % 2 === 0 ? 120 : -120), 0],
+            y: [0, (i % 2 === 0 ? -80 : 80), 0],
+            scale: [1, 1.1, 1],
+          },
+          {
+            duration: 18 + i * 6,
+            repeat: Infinity,
+            easing: "easeInOut"
+          }
+        );
+      });
+
+      // Hero headline animation
+      const heroH1 = document.getElementById('hero-h1');
+      if (heroH1) {
+        heroH1.style.opacity = 0;
+        animate(heroH1, { opacity: [0, 1], y: [40, 0] }, { duration: 0.9, easing: [0.16, 1, 0.3, 1], delay: 0.2 });
+      }
+      animate("h1 + p", { opacity: [0, 1], y: [20, 0] }, { duration: 0.8, delay: 0.5, easing: "easeOut" });
+
+      // Staggered grid item animations
+      inView(".grid", (info) => {
+        const cards = info.target.querySelectorAll(".facility-card, .class-card, .trainer-card, .testimonial-card, .membership-card, .blog-card");
+        if (cards.length > 0) {
+          animate(cards, { opacity: [0, 1], y: [40, 0] }, { duration: 0.6, delay: stagger(0.08), easing: [0.16, 1, 0.3, 1] });
+        }
+      });
+
+      // Basic fade-ups
+      inView(".fade-up", (info) => {
+        animate(info.target, { opacity: [0, 1], y: [32, 0] }, { duration: 0.8, delay: 0.05, easing: [0.16, 1, 0.3, 1] });
+      });
+    });
+  </script>
+</body>
+
+</html>

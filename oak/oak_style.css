@@ -1,0 +1,995 @@
+/* ============================================================
+   oak_style.css — Oak Fitness Dark Theme
+   Color Palette:
+   - Background: #0A0A0A (Pure Dark)
+   - Accent: #00C8B4 (Teal)
+   - Text: #FFFFFF (White)
+   - Secondary bg: #05050A (Very Dark)
+============================================================ */
+
+/* ============================================================
+   BASE & RESETS
+============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0A0A0A;
+  color: #ffffff;
+  font-family: 'Barlow', 'Barlow Condensed', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR
+============================================================ */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00C8B4;
+  border-radius: 2px;
+}
+
+::selection {
+  background: #00C8B4;
+  color: #000000;
+}
+
+/* ============================================================
+   LOADING SCREEN
+============================================================ */
+#loading-screen {
+  background-color: #0A0A0A;
+}
+
+/* ============================================================
+   MOVING BACKGROUND SHAPES
+============================================================ */
+.moving-shape {
+  opacity: 0.06;
+}
+
+/* ============================================================
+   GLOWING BLUR ORBS — section-level ambient lighting
+   Large circles (400–600px), teal rgba(0,200,180,0.12),
+   blur(80px), slowly drifting via keyframe animation.
+============================================================ */
+/* ── Orb drift: infinite alternate, translates 30px/-20px ── */
+@keyframes orbDrift1 {
+  from {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  to {
+    transform: translate(30px, -20px) scale(1.06);
+  }
+}
+
+@keyframes orbDrift2 {
+  from {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  to {
+    transform: translate(-30px, 20px) scale(1.04);
+  }
+}
+
+@keyframes orbDrift3 {
+  from {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  to {
+    transform: translate(20px, 30px) scale(1.05);
+  }
+}
+
+/* Reusable orb class — place absolutely in sections */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 200, 180, 0.12);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+.glow-orb-1 {
+  width: 500px;
+  height: 500px;
+  animation: orbDrift1 8s ease-in-out infinite alternate;
+}
+
+.glow-orb-2 {
+  width: 400px;
+  height: 400px;
+  animation: orbDrift2 10s ease-in-out infinite alternate;
+}
+
+.glow-orb-3 {
+  width: 600px;
+  height: 600px;
+  animation: orbDrift3 12s ease-in-out infinite alternate;
+}
+
+/* ============================================================
+   NAVBAR — Frosted glass on scroll
+============================================================ */
+#navbar {
+  background: transparent;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease,
+    border-color 0.4s ease, box-shadow 0.4s ease,
+    padding 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+#navbar.scrolled {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 200, 180, 0.18);
+  box-shadow: 0 4px 40px rgba(0, 200, 180, 0.06);
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+/* ============================================================
+   L-BRACKET CORNER DECORATION
+============================================================ */
+.l-bracket-wrap {
+  position: relative;
+}
+
+.l-bracket-wrap::before,
+.l-bracket-wrap::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: #00C8B4;
+  border-style: solid;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Top-left bracket */
+.l-bracket-wrap::before {
+  top: -3px;
+  left: -3px;
+  border-width: 2px 0 0 2px;
+}
+
+/* Bottom-right bracket */
+.l-bracket-wrap::after {
+  bottom: -3px;
+  right: -3px;
+  border-width: 0 2px 2px 0;
+}
+
+/* Teal vertical divider */
+.teal-divider {
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, #00C8B4, transparent);
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   HERO SECTION — Animated grid lines
+============================================================ */
+.hero-bg {
+  background-color: #0A0A0A;
+}
+
+/* Grid texture — animated background-position */
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 60px;
+  }
+}
+
+.grid-texture {
+  background-image:
+    repeating-linear-gradient(0deg,
+      rgba(0, 200, 180, 0.04) 0px,
+      rgba(0, 200, 180, 0.04) 1px,
+      transparent 1px,
+      transparent 60px),
+    repeating-linear-gradient(90deg,
+      rgba(0, 200, 180, 0.04) 0px,
+      rgba(0, 200, 180, 0.04) 1px,
+      transparent 1px,
+      transparent 60px);
+  background-size: 60px 60px;
+  animation: gridMove 8s linear infinite;
+}
+
+/* ============================================================
+   CLIP-PATH ANGLED BUTTONS
+============================================================ */
+.btn-teal {
+  background-color: #00C8B4;
+  color: #000000;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.85rem 2rem;
+  display: inline-block;
+  transition: all 0.25s ease;
+  border: 2px solid #00C8B4;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+}
+
+.btn-teal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.btn-teal:hover {
+  background-color: #00b5a3;
+  border-color: #00b5a3;
+  box-shadow: 0 0 30px rgba(0, 200, 180, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-teal:hover::after {
+  opacity: 1;
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: #ffffff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.85rem 2rem;
+  display: inline-block;
+  transition: all 0.25s ease;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  text-decoration: none;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+}
+
+.btn-ghost:hover {
+  border-color: #00C8B4;
+  color: #00C8B4;
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   MARQUEE ANIMATION
+============================================================ */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-track .marquee-content {
+  animation: marquee 28s linear infinite;
+}
+
+/* ============================================================
+   STATS BAR
+============================================================ */
+.stats-bar {
+  background-color: #0A0A0A;
+  border-top: 1px solid rgba(0, 200, 180, 0.2);
+  border-bottom: 1px solid rgba(0, 200, 180, 0.2);
+}
+
+/* ============================================================
+   ABOUT SECTION
+============================================================ */
+.about-section {
+  background-color: #05050A;
+}
+
+/* ============================================================
+   SECTION COMMON
+============================================================ */
+.section-dark {
+  background-color: #0A0A0A;
+}
+
+.section-darker {
+  background-color: #05050A;
+}
+
+/* Section heading teal word highlight */
+.text-teal {
+  color: #00C8B4;
+}
+
+/* Teal underline accent below section headers */
+.teal-underline {
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: #00C8B4;
+  margin: 12px 0 0 0;
+}
+
+.teal-underline-center {
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: #00C8B4;
+  margin: 12px auto 0;
+}
+
+/* ============================================================
+   GLASSMORPHISM CARD BASE
+   Applied to: facility-card, membership-card, testimonial-card
+============================================================ */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 200, 180, 0.15);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 200, 180, 0.35);
+  box-shadow: 0 20px 60px rgba(0, 200, 180, 0.1);
+}
+
+/* ============================================================
+   FACILITY CARDS — glassmorphism
+============================================================ */
+.facility-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 200, 180, 0.15);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Teal top-line reveal on hover */
+.facility-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #00C8B4;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.facility-card:hover::before {
+  transform: scaleX(1);
+}
+
+.facility-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 200, 180, 0.35);
+  box-shadow: 0 20px 60px rgba(0, 200, 180, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ============================================================
+   MEMBERSHIP CARDS — glassmorphism
+============================================================ */
+.membership-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 200, 180, 0.15);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+  position: relative;
+}
+
+/* Featured (Pro Athlete) card — top teal border */
+.membership-card.featured {
+  border-color: rgba(0, 200, 180, 0.35);
+  border-top: 2px solid #00C8B4;
+  box-shadow: 0 0 40px rgba(0, 200, 180, 0.12), inset 0 0 40px rgba(0, 200, 180, 0.02);
+  transform: scale(1.03);
+}
+
+.membership-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 200, 180, 0.35);
+  box-shadow: 0 20px 60px rgba(0, 200, 180, 0.1);
+}
+
+.membership-card.featured:hover {
+  transform: scale(1.03) translateY(-8px);
+}
+
+/* ============================================================
+   TESTIMONIAL AUTO-SCROLL
+============================================================ */
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollRight {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.testimonial-track {
+  overflow: hidden;
+  width: 100%;
+}
+
+.testimonial-track .testimonial-inner {
+  display: flex;
+  width: max-content;
+  animation: scrollLeft 40s linear infinite;
+}
+
+.testimonial-track.reverse .testimonial-inner {
+  animation: scrollRight 40s linear infinite;
+}
+
+.testimonial-track:hover .testimonial-inner {
+  animation-play-state: paused;
+}
+
+/* ============================================================
+   TESTIMONIAL CARD — glassmorphism
+============================================================ */
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 200, 180, 0.15);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+  border-color: rgba(0, 200, 180, 0.35);
+  box-shadow: 0 20px 60px rgba(0, 200, 180, 0.1);
+}
+
+/* ============================================================
+   BOOKING FORM
+============================================================ */
+.booking-form {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 200, 180, 0.2);
+}
+
+.booking-input {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 200, 180, 0.15);
+  color: #ffffff;
+  transition: border-color 0.2s;
+}
+
+.booking-input:focus {
+  outline: none;
+  border-color: #00C8B4;
+  box-shadow: 0 0 0 2px rgba(0, 200, 180, 0.1);
+}
+
+.booking-input option {
+  background: #111118;
+  color: #ffffff;
+}
+
+/* Day/Time buttons */
+.day-btn,
+.time-btn {
+  background: transparent;
+  border: 1px solid rgba(0, 200, 180, 0.2);
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.75rem;
+}
+
+.day-btn:hover,
+.time-btn:hover {
+  border-color: #00C8B4;
+  color: #00C8B4;
+}
+
+.day-btn.active,
+.time-btn.active {
+  background-color: #00C8B4;
+  border-color: #00C8B4;
+  color: #000000;
+  font-weight: 700;
+}
+
+/* ============================================================
+   MOBILE MENU
+============================================================ */
+#mobile-menu {
+  background-color: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(0, 200, 180, 0.2);
+}
+
+/* ============================================================
+   SCROLL REVEAL — fade-up via IntersectionObserver
+   Elements start hidden; .visible is added by JS on enter.
+============================================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up.delay-100 {
+  transition-delay: 0.1s;
+}
+
+.fade-up.delay-200 {
+  transition-delay: 0.2s;
+}
+
+.fade-up.delay-300 {
+  transition-delay: 0.3s;
+}
+
+/* ============================================================
+   HERO STAGGER — page-load entrance for hero child elements
+   Applied directly via JS-added class, not IntersectionObserver.
+============================================================ */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-animate {
+  opacity: 0;
+  animation: heroFadeUp 0.8s ease forwards;
+}
+
+.hero-animate.delay-1 {
+  animation-delay: 0.2s;
+}
+
+.hero-animate.delay-2 {
+  animation-delay: 0.4s;
+}
+
+.hero-animate.delay-3 {
+  animation-delay: 0.6s;
+}
+
+.hero-animate.delay-4 {
+  animation-delay: 0.8s;
+}
+
+.hero-animate.delay-5 {
+  animation-delay: 1.0s;
+}
+
+/* ============================================================
+   SCROLL INDICATOR — thin teal line + pulsing text at hero bottom
+============================================================ */
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.scroll-indicator__label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+.scroll-indicator__line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, #00C8B4, transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+
+@keyframes scrollPulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   MARQUEE TAGS STRIP — two rows, dark bg, tag pills
+============================================================ */
+.marquee-tags-wrap {
+  background: #0A0A0A;
+  border-top: 1px solid rgba(0, 200, 180, 0.08);
+  border-bottom: 1px solid rgba(0, 200, 180, 0.08);
+  overflow: hidden;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.marquee-tags-row {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-tags-row .marquee-tags-inner {
+  display: flex;
+  gap: 10px;
+  padding: 0 5px;
+  animation: marqueeLeft 30s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee-tags-row.reverse .marquee-tags-inner {
+  animation: marqueeRight 30s linear infinite;
+}
+
+.marquee-tags-row:hover .marquee-tags-inner {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeLeft {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.marquee-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border: 1px solid rgba(0, 200, 180, 0.18);
+  background: rgba(0, 200, 180, 0.04);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.marquee-tag:hover {
+  border-color: rgba(0, 200, 180, 0.5);
+  color: #00C8B4;
+  background: rgba(0, 200, 180, 0.08);
+}
+
+.marquee-tag .tag-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #00C8B4;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   CARD LEFT ACCENT LINE — scaleY(0→1) from bottom on hover
+============================================================ */
+.card-left-accent {
+  position: relative;
+}
+
+.card-left-accent::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2px;
+  height: 100%;
+  background: #00C8B4;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s ease;
+}
+
+.card-left-accent:hover::after {
+  transform: scaleY(1);
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer {
+  background-color: #0A0A0A;
+  border-top: 1px solid rgba(0, 200, 180, 0.2);
+}
+
+/* ============================================================
+   TEAL GLOW PULSE (Hero background orb effect)
+============================================================ */
+@keyframes tealPulse {
+
+  0%,
+  100% {
+    opacity: 0.08;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.14;
+    transform: scale(1.05);
+  }
+}
+
+.teal-glow-orb {
+  animation: tealPulse 8s ease-in-out infinite;
+}
+
+/* ============================================================
+   TRAINER CARD
+============================================================ */
+.trainer-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 200, 180, 0.15);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+  overflow: hidden;
+}
+
+.trainer-card:hover {
+  border-color: rgba(0, 200, 180, 0.35);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 200, 180, 0.1);
+}
+
+.trainer-card:hover .trainer-overlay {
+  opacity: 1;
+}
+
+.trainer-overlay {
+  background: linear-gradient(to top, rgba(0, 200, 180, 0.85), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* ============================================================
+   CLASS CARD — glassmorphism
+============================================================ */
+.class-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 200, 180, 0.15);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.class-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #00C8B4;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.class-card:hover::after {
+  transform: scaleX(1);
+}
+
+.class-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 200, 180, 0.35);
+  box-shadow: 0 20px 60px rgba(0, 200, 180, 0.1);
+}
+
+/* ============================================================
+   BLOG CARD — glassmorphism
+============================================================ */
+.blog-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 200, 180, 0.15);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+  overflow: hidden;
+}
+
+.blog-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 200, 180, 0.35);
+  box-shadow: 0 20px 60px rgba(0, 200, 180, 0.1);
+}
+
+/* ============================================================
+   UTILITY CLASSES
+============================================================ */
+.font-condensed {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+/* Teal separator line */
+.teal-line {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #00C8B4, transparent);
+  opacity: 0.4;
+}
+
+/* ============================================================
+   COUNTER
+============================================================ */
+.counter-wrapper .counter-num {
+  color: #ffffff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* ============================================================
+   APP DOWNLOAD SECTION
+============================================================ */
+.app-badge {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 200, 180, 0.25);
+  transition: all 0.25s;
+}
+
+.app-badge:hover {
+  border-color: #00C8B4;
+  background: rgba(0, 200, 180, 0.08);
+}
+
+/* ============================================================
+   CTA SECTION
+============================================================ */
+.cta-section {
+  background: linear-gradient(135deg, #0A0A0A, #02100F 50%, #0A0A0A);
+  border-top: 1px solid rgba(0, 200, 180, 0.2);
+  border-bottom: 1px solid rgba(0, 200, 180, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(0, 200, 180, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  animation: orbDrift3 30s ease-in-out infinite;
+}
+
+/* ============================================================
+   SECTION POSITION HELPER — wrap content above orbs
+============================================================ */
+.section-content {
+  position: relative;
+  z-index: 1;
+}
