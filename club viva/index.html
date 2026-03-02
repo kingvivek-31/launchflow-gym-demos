@@ -9,7 +9,7 @@
     content="Club Viva is your premier high-intensity training destination in Rohini Sector-23 &amp; Sector-24. 25,000 sq ft of world-class training space built for serious results." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link
-    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="club_viva_style.css" />
   <script>
@@ -23,8 +23,8 @@
             card: '#0A0A0F',
           },
           fontFamily: {
-            condensed: ['Barlow Condensed', 'sans-serif'],
-            body: ['Barlow', 'sans-serif'],
+            condensed: ['Oswald', 'sans-serif'],
+            body: ['Roboto', 'sans-serif'],
           },
         }
       }
@@ -46,33 +46,19 @@
         <div class="absolute -top-4 -left-4 w-6 h-6 border-t-2 border-l-2 border-[#E53935]"></div>
         <!-- Bottom-right bracket -->
         <div class="absolute -bottom-4 -right-4 w-6 h-6 border-b-2 border-r-2 border-[#E53935]"></div>
-        <img src="oak-logo.png" alt="Club Viva Logo" class="h-24 md:h-36 object-contain"
-          onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='flex';" />
-        <div id="fallback-logo" class="hidden flex-col items-center">
+        <div class="flex flex-col items-center">
           <div class="flex items-center gap-2">
-            <span class="text-white text-6xl md:text-8xl font-black tracking-[0.25em] drop-shadow-md">CLUB</span>
+            <span
+              class="font-condensed text-white text-6xl md:text-8xl font-black tracking-[0.25em] drop-shadow-md">CLUB</span>
           </div>
-          <span class="text-[#E53935] text-sm md:text-xl font-bold uppercase tracking-[0.5em] mt-2">VIVA</span>
+          <span
+            class="font-condensed text-[#E53935] text-sm md:text-xl font-bold uppercase tracking-[0.5em] mt-2">VIVA</span>
         </div>
       </div>
       <!-- Loading bar -->
       <div class="w-32 h-px bg-[#E53935]/20 relative overflow-hidden mt-2">
         <div id="loading-bar" class="absolute left-0 top-0 h-full bg-[#E53935] w-0 transition-none"></div>
       </div>
-    </div>
-  </div>
-
-  <!-- ============================================================
-     MOVING BACKGROUND OBJECTS (Subtle red glows)
-============================================================ -->
-  <div id="moving-bg" class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-    <div
-      class="moving-shape teal-glow-orb absolute top-[15%] left-[5%] w-[50vw] h-[50vw] rounded-full bg-[#E53935]/5 blur-[150px]">
-    </div>
-    <div class="moving-shape absolute top-[65%] right-[5%] w-[40vw] h-[40vw] rounded-full bg-[#E53935]/4 blur-[130px]">
-    </div>
-    <div
-      class="moving-shape absolute bottom-[-5%] left-[35%] w-[55vw] h-[55vw] rounded-full bg-[#E53935]/3 blur-[160px]">
     </div>
   </div>
 
@@ -87,19 +73,21 @@
         <a href="#" class="flex-shrink-0">
           <div class="flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300">
             <div class="flex items-center gap-2">
-              <img src="oak-logo.png" alt="Club Viva Logo" class="h-8 md:h-10 object-contain"
-                onerror="this.style.display='none'; document.getElementById('nav-fallback').style.display='flex';" />
-              <div id="nav-fallback" class="hidden items-center gap-1">
+              <div class="flex items-center gap-2">
                 <!-- Icon -->
-                <svg class="w-7 h-7 text-[#E53935]" viewBox="0 0 24 24" fill="currentColor">
+                <svg class="w-8 h-8 text-[#E53935]" viewBox="0 0 24 24" fill="currentColor">
                   <path
                     d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20C19,20 22,3 22,3,21,5 14,5.25 17,8Z" />
                 </svg>
-                <span class="font-condensed font-black text-3xl md:text-4xl tracking-[0.15em] text-white">CLUB VIVA</span>
+                <div class="flex flex-col items-start leading-none">
+                  <span class="font-condensed font-black text-2xl md:text-3xl tracking-[0.1em] text-white">CLUB
+                    VIVA</span>
+                </div>
               </div>
             </div>
             <span
-              class="font-condensed font-bold text-[9px] md:text-[11px] uppercase tracking-[0.4em] text-[#E53935] mt-0.5 text-center w-full">Gym</span>
+              class="font-condensed font-bold text-[10px] md:text-[12px] uppercase tracking-[0.5em] text-[#888] mt-1 text-center w-full">EST.
+              2025</span>
           </div>
         </a>
 
@@ -172,81 +160,30 @@
     <!-- ============================================================
        SECTION 2: HERO
 ============================================================ -->
-    <section class="relative min-h-screen flex flex-col justify-center overflow-hidden hero-bg pt-24">
-      <!-- Grid overlay -->
-      <div class="absolute inset-0 grid-texture pointer-events-none"></div>
+    <section class="relative min-h-screen flex flex-col justify-center overflow-hidden hero-bg">
+      <div class="hero-image-wrap">
+        <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=1600&auto=format&fit=crop&q=80"
+          alt="Club Viva — Premium gym floor" />
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
 
-      <!-- Glow orbs -->
-      <div class="glow-orb glow-orb-1" style="top:-10%;right:-5%;"></div>
-      <div class="glow-orb glow-orb-2" style="bottom:5%;left:-8%;"></div>
+      <div class="relative max-w-7xl mx-auto px-6 w-full z-10 pt-32 lg:pt-40 hero-animate delay-2">
+        <!-- Main headline -->
+        <h1 id="hero-h1"
+          class="font-condensed font-black uppercase text-5xl sm:text-7xl lg:text-[5.5rem] leading-[0.9] text-white tracking-widest mb-8">
+          STRENGTH.<br />FROM ROHINI.<br />WITH <span class="text-[#E53935]">LOVE.</span>
+        </h1>
 
-      <div class="relative max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center py-20 lg:py-0">
-        <!-- Left: Text -->
-        <div>
-          <!-- Tagline -->
-          <div class="flex items-center gap-3 mb-6 hero-animate delay-1">
-            <div class="w-8 h-px bg-[#E53935]"></div>
-            <span class="text-[#E53935] font-condensed font-700 uppercase tracking-[0.3em] text-sm">High-Intensity Training
-              in Rohini Sector-23 &amp; Sector-24</span>
-          </div>
+        <p class="text-white text-lg md:text-xl max-w-2xl font-body font-bold mb-10 leading-relaxed uppercase">
+          Welcome to Club Viva. 25,000 sq ft of pure performance, heavy lifting, and combat training. Give it your all.
+        </p>
 
-          <!-- Main headline -->
-          <h1 id="hero-h1"
-            class="hero-animate delay-2 font-condensed font-black uppercase text-6xl sm:text-7xl lg:text-8xl xl:text-[5.5rem] leading-none text-white mb-6">
-            Strength<br />Unleashed<br /><span class="text-[#E53935]">Here.</span>
-          </h1>
-
-          <p class="hero-animate delay-3 text-white/50 text-lg max-w-md mb-10 leading-relaxed">
-            Club Viva — 25,000 sq ft of world-class training space in Rohini Sector-23 &amp; Sector-24, built for
-            high-intensity training, powerful physiques, and relentless energy.
-          </p>
-
-          <div class="hero-animate delay-4 flex flex-wrap gap-4 mb-10">
-            <a href="#membership" class="btn-teal text-sm">Start Free Trial</a>
-            <a href="#facilities" class="btn-ghost text-sm">Explore Facilities</a>
-          </div>
-
-          <!-- WhatsApp CTA (matching oakfitness.in) -->
-          <a href="https://wa.me/918920306202" target="_blank"
-            class="hero-animate delay-5 flex items-center gap-3 text-[#E53935] hover:text-white transition-colors group">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-            </svg>
-            <span class="font-condensed font-700 uppercase tracking-widest text-sm">Visit us for a Free Trial</span>
-            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor"
-              viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
-        </div>
-
-        <!-- Right: Hero Image with L-brackets -->
-        <div class="hero-animate delay-3 relative hidden lg:block">
-        <!-- Vertical accent divider -->
-        <div class="absolute left-[-24px] top-[10%] bottom-[10%] w-px bg-[#E53935]/40"></div>
-
-          <div class="l-bracket-wrap relative rounded-none overflow-hidden h-[560px]">
-            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&auto=format&fit=crop&q=80"
-              alt="Oak Fitness — Premium gym floor" class="w-full h-full object-cover filter brightness-75" />
-            <!-- Dark gradient overlay -->
-            <div class="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-black/40"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-          </div>
-
-          <!-- Floating stat badge -->
-          <div class="absolute -bottom-6 -left-6 bg-black border border-[#E53935]/60 px-6 py-4">
-            <div class="text-[#E53935] font-condensed font-black text-3xl">3,000+</div>
-            <div class="text-white/50 text-xs uppercase tracking-widest">Active Members</div>
-          </div>
+        <div class="flex flex-wrap gap-4 mb-10">
+          <a href="#membership" class="btn-teal">START FREE TRIAL</a>
+          <a href="#facilities" class="btn-ghost">OUR FACILITIES</a>
         </div>
       </div>
 
-      <!-- Scroll Indicator -->
-      <div class="scroll-indicator">
-        <span class="scroll-indicator__label">Scroll</span>
-        <div class="scroll-indicator__line"></div>
-      </div>
 
       <!-- Red Marquee Strip -->
       <div class="relative w-full bg-[#E53935] py-3 mt-16 lg:mt-8 overflow-hidden">
@@ -413,23 +350,19 @@
     <!-- ============================================================
        SECTION 3: ABOUT
 ============================================================ -->
-    <section id="about" class="py-28 about-section overflow-hidden" style="position:relative;">
-      <!-- Glow orbs -->
-      <div class="glow-orb glow-orb-2" style="top:10%;right:-5%;"></div>
-      <div class="glow-orb glow-orb-3" style="bottom:-15%;left:-10%;opacity:0.07;"></div>
-      <div class="relative z-[1] max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
-        <!-- Left: Image with L-brackets -->
-        <div class="fade-up relative">
-          <div class="l-bracket-wrap relative overflow-hidden h-[520px]">
+    <section id="about" class="py-28 section-light overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+        <!-- Left: Image Solid Block -->
+        <div class="fade-up">
+          <div class="overflow-hidden border-4 border-black h-[520px]">
             <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&auto=format&fit=crop&q=80"
-              alt="Oak Fitness interior — luxury gym floor" class="w-full h-full object-cover filter brightness-70" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+              alt="Club Viva interior — luxury gym floor" class="w-full h-full object-cover grayscale contrast-125" />
           </div>
         </div>
 
         <!-- Right: Content -->
         <div class="fade-up delay-200">
-        <div class="flex items-center gap-3 mb-6">
+          <div class="flex items-center gap-3 mb-6">
             <div class="w-8 h-px bg-[#E53935]"></div>
             <span class="text-[#E53935] font-condensed font-700 uppercase tracking-[0.3em] text-sm">Why Club Viva</span>
           </div>
@@ -511,19 +444,17 @@
   <!-- ============================================================
        SECTION 4: BOOK A CLASS
 ============================================================ -->
-  <section id="booking" class="py-28 section-dark border-t border-[#00C8B4]/10"
+  <section id="booking" class="py-28 section-dark border-t-4 border-[#E53935]"
     style="position:relative;overflow:hidden;">
-    <!-- Glow orbs -->
-    <div class="glow-orb glow-orb-1" style="top:-20%;left:50%;transform:translateX(-50%);"></div>
     <div class="max-w-4xl mx-auto px-6 text-center fade-up" style="position:relative;z-index:1;">
-        <div class="flex items-center justify-center gap-3 mb-6">
+      <div class="flex items-center justify-center gap-3 mb-6">
         <div class="w-8 h-px bg-[#E53935]"></div>
         <span class="text-[#E53935] font-condensed font-700 uppercase tracking-[0.3em] text-sm">Reserve Your
           Spot</span>
         <div class="w-8 h-px bg-[#E53935]"></div>
       </div>
-      <h2 class="font-condensed font-black uppercase text-5xl lg:text-6xl leading-none text-white mb-4">Book
-        Your<br /><span class="text-[#E53935]">Session Today</span></h2>
+      <h2 class="font-condensed font-black uppercase text-5xl lg:text-7xl leading-none text-white mb-4">BOOK
+        YOUR<br /><span class="text-[#E53935]">SESSION TODAY</span></h2>
       <p class="text-white/50 mb-12 text-base">Pick your class, trainer, and time — we'll take care of the rest.</p>
 
       <div class="booking-form rounded-none p-8 text-left">
@@ -631,11 +562,8 @@
   <!-- ============================================================
        SECTION 5: FACILITIES GRID
 ============================================================ -->
-  <section id="facilities" class="py-28 about-section border-t border-[#E53935]/20"
+  <section id="facilities" class="py-28 section-light border-y-4 border-black"
     style="position:relative;overflow:hidden;">
-    <!-- Glow orbs -->
-    <div class="glow-orb glow-orb-2" style="top:0;right:-5%;"></div>
-    <div class="glow-orb glow-orb-1" style="bottom:-10%;left:-5%;"></div>
     <div class="max-w-7xl mx-auto px-6" style="position:relative;z-index:1;">
       <div class="text-center mb-16 fade-up">
         <div class="flex items-center justify-center gap-3 mb-6">
@@ -644,16 +572,16 @@
             Facilities</span>
           <div class="w-8 h-px bg-[#E53935]"></div>
         </div>
-        <h2 class="font-condensed font-black uppercase text-5xl lg:text-6xl leading-none text-white mb-4">
-          World Class <span class="text-[#E53935]">Facilities</span>
+        <h2 class="font-condensed font-black uppercase text-5xl lg:text-7xl leading-none text-white mb-4">
+          WORLD CLASS <span class="text-[#E53935]">FACILITIES</span>
         </h2>
         <div class="teal-underline-center"></div>
         <p class="text-white/50 text-base max-w-lg mx-auto mt-6">Six world-class zones designed for every kind of
           athlete.</p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#E53935]/10">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Card 1 -->
-        <div class="facility-card card-left-accent p-8 fade-up">
+        <div class="facility-card p-8 fade-up">
           <div class="text-[#E53935] mb-5">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12h2l2-6 4 12 4-10 2 6h4" />
@@ -664,7 +592,7 @@
             to forge world-class strength.</p>
         </div>
         <!-- Card 2 -->
-        <div class="facility-card card-left-accent p-8 fade-up delay-100">
+        <div class="facility-card p-8 fade-up delay-100">
           <div class="text-[#E53935] mb-5">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -675,7 +603,7 @@
             screens for an immersive session.</p>
         </div>
         <!-- Card 3 -->
-        <div class="facility-card card-left-accent p-8 fade-up delay-200">
+        <div class="facility-card p-8 fade-up delay-200">
           <div class="text-[#E53935] mb-5">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="10" stroke-width="1.5" />
@@ -687,7 +615,7 @@
             BJJ, and MMA training.</p>
         </div>
         <!-- Card 4 -->
-        <div class="facility-card card-left-accent p-8 fade-up delay-100">
+        <div class="facility-card p-8 fade-up delay-100">
           <div class="text-[#E53935] mb-5">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v18M3 12h18" />
@@ -698,7 +626,7 @@
             active recovery sessions.</p>
         </div>
         <!-- Card 5 -->
-        <div class="facility-card card-left-accent p-8 fade-up delay-200">
+        <div class="facility-card p-8 fade-up delay-200">
           <div class="text-[#E53935] mb-5">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -710,7 +638,7 @@
             recovery and restore performance.</p>
         </div>
         <!-- Card 6 -->
-        <div class="facility-card card-left-accent p-8 fade-up delay-300">
+        <div class="facility-card p-8 fade-up delay-300">
           <div class="text-[#E53935] mb-5">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"

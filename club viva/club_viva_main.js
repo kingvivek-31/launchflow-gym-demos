@@ -1,5 +1,5 @@
 /* ============================================================
-   oak_main.js — Oak Fitness
+   club_viva_main.js — Club Viva
    Animations: Scroll reveal, hero stagger, counters,
                 nav scroll, mobile menu, day/time pickers
 ============================================================ */
