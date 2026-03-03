@@ -229,9 +229,10 @@ function closeDrawer() {
 }
 
 function buildDrawerHTML(d, plan) {
-  const accentColor = plan === 'pro' ? '#FDE7F1' : plan === 'elite' ? '#F5F0EA' : '#F459AD';
+  const accentColor = plan === 'pro' ? '#FFF5F7' : plan === 'elite' ? '#ffffff' : '#e8168c';
+  const btnTextColor = plan === 'starter' ? '#ffffff' : '#111111';
   const perks = d.perks.map(p => `
-    <li class="flex items-start gap-3 text-sm" style="color:rgba(61,61,61,0.8)">
+    <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.6)">
       <span style="color:${accentColor}; margin-top:2px">✓</span>
       <span class="font-body">${p}</span>
     </li>`).join('');
@@ -241,7 +242,7 @@ function buildDrawerHTML(d, plan) {
     <h3 class="font-display font-black text-4xl uppercase text-onyx leading-tight mb-2">${d.title}</h3>
     <div class="font-display font-black text-2xl mb-8" style="color:${accentColor}">${d.price}</div>
     <ul class="space-y-3 mb-10">${perks}</ul>
-    <button onclick="selectPlanAndJoin('${plan}')" class="w-full py-4 font-display font-black text-xs tracking-mega uppercase transition-all duration-300" style="background:${accentColor}; color:#0e0e0e;">
+    <button onclick="selectPlanAndJoin('${plan}')" class="w-full py-4 font-display font-black text-xs tracking-mega uppercase transition-all duration-300" style="background:${accentColor}; color:${btnTextColor};">
       ${d.cta}
     </button>
     <p class="font-body text-xs text-charcoal/30 text-center mt-4">No lock-in. Cancel anytime.</p>`;
