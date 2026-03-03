@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coreflex | Pilates Studio</title>
+    <meta name="description"
+        content="Coreflex – A boutique pilates studio offering movement, community, and transformation." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+        :root {
+            --brown: #6B4226;
+            --brown-dark: #3B1F14;
+            --cream: #FAF7F2;
+            --blush: #E8C4B8;
+            --charcoal: #2C2C2C;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--charcoal);
+            background: var(--cream);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(107, 66, 38, 0.15);
+        }
+
+        .btn-brown {
+            background: var(--brown);
+            color: #fff;
+            padding: 0.75rem 2rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            transition: background 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .btn-brown:hover {
+            background: var(--brown-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            border: 1.5px solid var(--brown);
+            color: var(--brown);
+            padding: 0.75rem 2rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            background: var(--brown);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline-light {
+            border: 1.5px solid #FAF7F2;
+            color: #FAF7F2;
+            padding: 0.75rem 2rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-outline-light:hover {
+            background: #FAF7F2;
+            color: var(--brown-dark);
+            transform: translateY(-1px);
+        }
+
+        .nav-scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .insta-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(107, 66, 38, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .insta-tile:hover .insta-overlay {
+            opacity: 1;
+        }
+
+        .stars {
+            color: #D4AF37;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brown: '#6B4226',
+                        'brown-dark': '#3B1F14',
+                        cream: '#FAF7F2',
+                        blush: '#E8C4B8',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"DM Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- 1. ANNOUNCEMENT BAR -->
+    <div style="background:var(--brown)" class="text-center py-2.5 px-4">
+        <p style="color:var(--cream)" class="text-sm tracking-wide">
+            ✨ Intro Offer: 2 Weeks Unlimited for $49 —
+            <a href="#classes"
+                class="underline underline-offset-2 font-medium hover:opacity-80 transition-opacity">Claim Now →</a>
+        </p>
+    </div>
+
+    <!-- 2. STICKY NAVBAR -->
+    <nav id="navbar" class="sticky top-0 z-50 bg-white transition-shadow duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex-shrink-0">
+                <span style="font-family:'Playfair Display',serif;color:var(--brown)"
+                    class="text-2xl font-semibold tracking-tight leading-none">
+                    Coreflex<br /><span class="text-xs font-normal tracking-[0.2em] uppercase"
+                        style="color:var(--charcoal)">Pilates Studio</span>
+                </span>
+            </a>
+            <!-- Desktop Nav Links -->
+            <ul class="hidden md:flex items-center gap-8">
+                <li><a href="#classes" class="text-sm tracking-wide hover:text-brown transition-colors"
+                        style="color:var(--charcoal)">Classes</a></li>
+                <li><a href="#schedule" class="text-sm tracking-wide hover:text-brown transition-colors"
+                        style="color:var(--charcoal)">Schedule</a></li>
+                <li><a href="#community" class="text-sm tracking-wide hover:text-brown transition-colors"
+                        style="color:var(--charcoal)">Events</a></li>
+                <li><a href="#footer" class="text-sm tracking-wide hover:text-brown transition-colors"
+                        style="color:var(--charcoal)">Contact</a></li>
+            </ul>
+            <!-- Desktop Buttons -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="#schedule" class="btn-outline text-sm">Book a Class</a>
+                <a href="#memberships" class="btn-brown text-sm">Memberships</a>
+            </div>
+            <!-- Hamburger -->
+            <button id="menu-toggle" class="md:hidden p-2 rounded" aria-label="Toggle menu">
+                <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 pb-6">
+            <ul class="flex flex-col gap-4 pt-4">
+                <li><a href="#classes" class="text-sm tracking-wide block" onclick="closeMobile()">Classes</a></li>
+                <li><a href="#schedule" class="text-sm tracking-wide block" onclick="closeMobile()">Schedule</a></li>
+                <li><a href="#community" class="text-sm tracking-wide block" onclick="closeMobile()">Events</a></li>
+                <li><a href="#footer" class="text-sm tracking-wide block" onclick="closeMobile()">Contact</a></li>
+            </ul>
+            <div class="flex flex-col gap-3 mt-4">
+                <a href="#schedule" class="btn-outline text-sm text-center" onclick="closeMobile()">Book a Class</a>
+                <a href="#memberships" class="btn-brown text-sm text-center" onclick="closeMobile()">Memberships</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3. HERO -->
+    <section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+        <img src="assets/images/hero.png" alt="Studio hero" class="absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-0"
+            style="background: linear-gradient(135deg, rgba(59,31,20,0.72) 0%, rgba(107,66,38,0.55) 100%)"></div>
+        <div class="relative text-center px-6 max-w-3xl mx-auto">
+            <p class="text-xs tracking-[0.25em] uppercase mb-4" style="color:var(--blush)">Reformer · Mat · Tower</p>
+            <h1 class="text-5xl md:text-7xl font-semibold leading-tight mb-6"
+                style="color:var(--cream);font-family:'Playfair Display',serif">
+                Move. Breathe.<br /><em>Belong.</em>
+            </h1>
+            <p class="text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed" style="color:rgba(250,247,242,0.85)">
+                A boutique studio where every body is welcome. Discover movement practices that celebrate you exactly as
+                you are.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#classes" class="btn-brown text-sm">Explore Classes</a>
+                <a href="#about" class="btn-outline-light text-sm">Our Story</a>
+            </div>
+        </div>
+        <!-- Scroll cue -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+            <div class="w-px h-12 animate-bounce" style="background:var(--blush)"></div>
+        </div>
+    </section>
+
+    <!-- 4. CLASSES HORIZONTAL SCROLL -->
+    <section id="classes" class="py-20" style="background:var(--cream)">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <p class="text-xs tracking-[0.2em] uppercase mb-3" style="color:var(--brown)">What We Offer</p>
+                <h2 class="text-4xl md:text-5xl font-semibold" style="color:var(--charcoal)">Our Classes</h2>
+            </div>
+            <div class="flex gap-5 overflow-x-auto hide-scroll pb-4">
+                <!-- Class cards -->
+                <div class="card-hover flex-none w-64 rounded-2xl overflow-hidden bg-white shadow-sm">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/reformer.png" alt="Reformer Flow" class="w-full h-full object-cover" />
+                        <span class="absolute top-3 left-3 text-xs px-2 py-1 rounded-full"
+                            style="background:var(--blush);color:var(--brown-dark)">Medium Intensity</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold mb-1" style="font-family:'Playfair Display',serif">Reformer
+                            Flow</h3>
+                        <p class="text-xs" style="color:#888">45 min · All Levels</p>
+                    </div>
+                </div>
+                <div class="card-hover flex-none w-64 rounded-2xl overflow-hidden bg-white shadow-sm">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/reformer.png" alt="Dynamic Reformer"
+                            class="w-full h-full object-cover" />
+                        <span class="absolute top-3 left-3 text-xs px-2 py-1 rounded-full"
+                            style="background:#D4A99B;color:var(--brown-dark)">High Intensity</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold mb-1" style="font-family:'Playfair Display',serif">Dynamic
+                            Reformer</h3>
+                        <p class="text-xs" style="color:#888">55 min · Intermediate</p>
+                    </div>
+                </div>
+                <div class="card-hover flex-none w-64 rounded-2xl overflow-hidden bg-white shadow-sm">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/mats.png" alt="Mat Pilates" class="w-full h-full object-cover" />
+                        <span class="absolute top-3 left-3 text-xs px-2 py-1 rounded-full"
+                            style="background:#C9DACC;color:#2C4A30">Low Intensity</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold mb-1" style="font-family:'Playfair Display',serif">Mat Pilates
+                        </h3>
+                        <p class="text-xs" style="color:#888">60 min · All Levels</p>
+                    </div>
+                </div>
+                <div class="card-hover flex-none w-64 rounded-2xl overflow-hidden bg-white shadow-sm">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/mats.png" alt="Restorative Mat" class="w-full h-full object-cover" />
+                        <span class="absolute top-3 left-3 text-xs px-2 py-1 rounded-full"
+                            style="background:#C9DACC;color:#2C4A30">Low Intensity</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold mb-1" style="font-family:'Playfair Display',serif">Restorative
+                            Mat</h3>
+                        <p class="text-xs" style="color:#888">45 min · Beginner</p>
+                    </div>
+                </div>
+                <div class="card-hover flex-none w-64 rounded-2xl overflow-hidden bg-white shadow-sm">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/reformer.png" alt="Jumpboard Reformer"
+                            class="w-full h-full object-cover" />
+                        <span class="absolute top-3 left-3 text-xs px-2 py-1 rounded-full"
+                            style="background:var(--blush);color:var(--brown-dark)">Medium Intensity</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold mb-1" style="font-family:'Playfair Display',serif">Jumpboard
+                            Reformer</h3>
+                        <p class="text-xs" style="color:#888">50 min · All Levels</p>
+                    </div>
+                </div>
+                <div class="card-hover flex-none w-64 rounded-2xl overflow-hidden bg-white shadow-sm">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/reformer.png" alt="Tower Pilates" class="w-full h-full object-cover" />
+                        <span class="absolute top-3 left-3 text-xs px-2 py-1 rounded-full"
+                            style="background:#C9DACC;color:#2C4A30">Low Intensity</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold mb-1" style="font-family:'Playfair Display',serif">Tower
+                            Pilates</h3>
+                        <p class="text-xs" style="color:#888">60 min · All Levels</p>
+                    </div>
+                </div>
+                <div class="card-hover flex-none w-64 rounded-2xl overflow-hidden bg-white shadow-sm">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="assets/images/reformer.png" alt="Classical Reformer"
+                            class="w-full h-full object-cover" />
+                        <span class="absolute top-3 left-3 text-xs px-2 py-1 rounded-full"
+                            style="background:#C9DACC;color:#2C4A30">Low Intensity</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-semibold mb-1" style="font-family:'Playfair Display',serif">Classical
+                            Reformer</h3>
+                        <p class="text-xs" style="color:#888">60 min · All Levels</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#schedule" class="btn-outline text-sm">View Full Schedule →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ABOUT / WELCOME -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="assets/images/about.png" alt="Studio welcome"
+                        class="w-full rounded-2xl object-cover shadow-lg" style="max-height:580px" />
+                    <div class="absolute -bottom-5 -right-5 w-28 h-28 rounded-full hidden md:flex items-center justify-center shadow-xl"
+                        style="background:var(--brown)">
+                        <p class="text-center text-xs leading-tight"
+                            style="color:var(--cream);font-family:'Playfair Display',serif">Est.<br />2019</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-xs tracking-[0.2em] uppercase mb-4" style="color:var(--brown)">A Celebration of You
+                    </p>
+                    <h2 class="text-4xl md:text-5xl font-semibold leading-tight mb-6" style="color:var(--charcoal)">
+                        Welcome to the<br /><em>Living Experience</em></h2>
+                    <p class="text-base leading-relaxed mb-4" style="color:#555">At Coreflex, we believe movement is for
+                        every body. Our studio is an inclusive, welcoming space where you come as you are and leave
+                        feeling more connected — to yourself, to others, and to the joy of moving.</p>
+                    <p class="text-base leading-relaxed mb-8" style="color:#555">Whether you're taking your very first
+                        class or deepening an existing practice, our expert instructors hold space for your unique
+                        journey with warmth, expertise, and heart.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#pillars" class="btn-outline text-sm">About Us</a>
+                        <a href="#memberships" class="btn-brown text-sm">Memberships</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. COMMUNITY -->
+    <section id="community" class="py-20 overflow-hidden" style="background:var(--cream)">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-xs tracking-[0.2em] uppercase mb-4" style="color:var(--brown)">You Belong Here</p>
+                    <h2 class="text-4xl md:text-5xl font-semibold leading-tight mb-6" style="color:var(--charcoal)">
+                        Community is our<br /><em>foundation</em></h2>
+                    <p class="text-base leading-relaxed mb-8" style="color:#555">Beyond the barre, Coreflex is a gathering
+                        place. We host workshops, social events, and seasonal retreats that foster genuine connection.
+                        Here, your mat is a doorway — not just to movement, but to belonging.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#schedule" class="btn-brown text-sm">Join a Class</a>
+                        <a href="#newsletter" class="btn-outline text-sm">Stay in Touch</a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="assets/images/community.png" alt="Community"
+                        class="w-full rounded-2xl object-cover shadow-lg" style="max-height:500px" />
+                    <div class="absolute -top-4 -left-4 w-full h-full rounded-2xl border-2 -z-10 hidden md:block"
+                        style="border-color:var(--blush)"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 7. NEWSLETTER -->
+    <section id="newsletter" class="py-24 bg-white">
+        <div class="max-w-xl mx-auto px-6 text-center">
+            <p class="text-xs tracking-[0.2em] uppercase mb-3" style="color:var(--brown)">Stay Connected</p>
+            <h2 class="text-4xl font-semibold mb-4" style="color:var(--charcoal)">Join the <em>Living Movement</em></h2>
+            <p class="text-sm mb-8 leading-relaxed" style="color:#666">Get class updates, wellness tips, and exclusive
+                offers delivered to your inbox. No spam — just good energy.</p>
+            <form onsubmit="return false;" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input type="email" placeholder="Your email address"
+                    class="flex-1 px-4 py-3 border text-sm outline-none focus:ring-2 rounded-lg"
+                    style="border-color:var(--blush);font-family:'DM Sans',sans-serif;color:var(--charcoal)" />
+                <button type="submit" class="btn-brown text-sm rounded-lg whitespace-nowrap">Subscribe</button>
+            </form>
+            <p class="text-xs mt-4" style="color:#aaa">By subscribing you agree to our Privacy Policy. Unsubscribe any
+                time.</p>
+        </div>
+    </section>
+
+    <!-- 8. THREE PILLARS -->
+    <section id="pillars" class="py-20" style="background:#F3EDE7">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <p class="text-xs tracking-[0.2em] uppercase mb-3" style="color:var(--brown)">The Coreflex Way</p>
+                <h2 class="text-4xl md:text-5xl font-semibold" style="color:var(--charcoal)">What sets us apart</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="text-center px-4">
+                    <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5 text-xl font-bold"
+                        style="background:var(--blush);color:var(--brown);font-family:'Playfair Display',serif">01</div>
+                    <h3 class="text-xl font-semibold mb-3" style="font-family:'Playfair Display',serif">Elevate your
+                        movement</h3>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#666">Our signature classes blend
+                        science-backed movement with mindful intention. Each session is crafted to challenge, restore,
+                        and energise.</p>
+                    <a href="#classes" class="text-sm font-medium underline underline-offset-4"
+                        style="color:var(--brown)">Explore classes →</a>
+                </div>
+                <div class="text-center px-4">
+                    <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5 text-xl font-bold"
+                        style="background:var(--blush);color:var(--brown);font-family:'Playfair Display',serif">02</div>
+                    <h3 class="text-xl font-semibold mb-3" style="font-family:'Playfair Display',serif">Guidance from
+                        the heart</h3>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#666">Our instructors don't just teach — they
+                        lead with empathy, expertise, and genuine care. They meet you where you are, every time.</p>
+                    <a href="#about" class="text-sm font-medium underline underline-offset-4"
+                        style="color:var(--brown)">Meet the team →</a>
+                </div>
+                <div class="text-center px-4">
+                    <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5 text-xl font-bold"
+                        style="background:var(--blush);color:var(--brown);font-family:'Playfair Display',serif">03</div>
+                    <h3 class="text-xl font-semibold mb-3" style="font-family:'Playfair Display',serif">Thoughtfully
+                        designed</h3>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#666">From our light-filled studio to our
+                        curated playlists, every detail is intentional — a sanctuary where you can release, restore, and
+                        rise.</p>
+                    <a href="#community" class="text-sm font-medium underline underline-offset-4"
+                        style="color:var(--brown)">Our space →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. INSTAGRAM FEED -->
+    <section id="instagram" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <p class="text-xs tracking-[0.2em] uppercase mb-3" style="color:var(--brown)">Follow Along</p>
+                <h2 class="text-4xl font-semibold mb-1" style="color:var(--charcoal)">Connect with us</h2>
+                <p class="text-sm" style="color:#888">@coreflex.studio</p>
+            </div>
+            <div class="grid grid-cols-3 gap-2 md:gap-3">
+                <div class="relative insta-tile rounded-xl overflow-hidden aspect-square"><img
+                        src="https://picsum.photos/seed/insta1/400/400" class="w-full h-full object-cover"
+                        alt="Instagram 1" />
+                    <div class="insta-overlay rounded-xl">♡</div>
+                </div>
+                <div class="relative insta-tile rounded-xl overflow-hidden aspect-square"><img
+                        src="https://picsum.photos/seed/insta2/400/400" class="w-full h-full object-cover"
+                        alt="Instagram 2" />
+                    <div class="insta-overlay rounded-xl">♡</div>
+                </div>
+                <div class="relative insta-tile rounded-xl overflow-hidden aspect-square"><img
+                        src="https://picsum.photos/seed/insta3/400/400" class="w-full h-full object-cover"
+                        alt="Instagram 3" />
+                    <div class="insta-overlay rounded-xl">♡</div>
+                </div>
+                <div class="relative insta-tile rounded-xl overflow-hidden aspect-square"><img
+                        src="https://picsum.photos/seed/insta4/400/400" class="w-full h-full object-cover"
+                        alt="Instagram 4" />
+                    <div class="insta-overlay rounded-xl">♡</div>
+                </div>
+                <div class="relative insta-tile rounded-xl overflow-hidden aspect-square"><img
+                        src="https://picsum.photos/seed/insta5/400/400" class="w-full h-full object-cover"
+                        alt="Instagram 5" />
+                    <div class="insta-overlay rounded-xl">♡</div>
+                </div>
+                <div class="relative insta-tile rounded-xl overflow-hidden aspect-square"><img
+                        src="https://picsum.photos/seed/insta6/400/400" class="w-full h-full object-cover"
+                        alt="Instagram 6" />
+                    <div class="insta-overlay rounded-xl">♡</div>
+                </div>
+                <div class="relative insta-tile rounded-xl overflow-hidden aspect-square"><img
+                        src="https://picsum.photos/seed/insta7/400/400" class="w-full h-full object-cover"
+                        alt="Instagram 7" />
+                    <div class="insta-overlay rounded-xl">♡</div>
+                </div>
+                <div class="relative insta-tile rounded-xl overflow-hidden aspect-square"><img
+                        src="https://picsum.photos/seed/insta8/400/400" class="w-full h-full object-cover"
+                        alt="Instagram 8" />
+                    <div class="insta-overlay rounded-xl">♡</div>
+                </div>
+                <div class="relative insta-tile rounded-xl overflow-hidden aspect-square"><img
+                        src="https://picsum.photos/seed/insta9/400/400" class="w-full h-full object-cover"
+                        alt="Instagram 9" />
+                    <div class="insta-overlay rounded-xl">♡</div>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <a href="https://instagram.com" target="_blank" class="btn-outline text-sm">Follow on Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. TESTIMONIALS -->
+    <section id="testimonials" class="py-20" style="background:var(--cream)">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <p class="text-xs tracking-[0.2em] uppercase mb-3" style="color:var(--brown)">Reviews</p>
+                <h2 class="text-4xl md:text-5xl font-semibold" style="color:var(--charcoal)">What others have to say
+                </h2>
+            </div>
+            <div class="flex gap-6 overflow-x-auto hide-scroll pb-4">
+                <!-- Review cards -->
+                <div class="card-hover flex-none w-80 bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="stars text-lg mb-3">★★★★★</div>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#555">"Coreflex completely changed my
+                        relationship with movement. The instructors are warm, encouraging, and genuinely invested in
+                        your progress. I've never felt more at home in a studio."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold"
+                            style="background:var(--blush);color:var(--brown)">SA</div>
+                        <div>
+                            <p class="text-sm font-medium" style="color:var(--charcoal)">Sarah A.</p>
+                            <p class="text-xs" style="color:#aaa">Google Review ⭐</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-hover flex-none w-80 bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="stars text-lg mb-3">★★★★★</div>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#555">"The Living Barre Method is unlike
+                        anything I've tried. I leave every class feeling strong, centred, and genuinely happy. The
+                        community here is something special."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold"
+                            style="background:var(--blush);color:var(--brown)">MK</div>
+                        <div>
+                            <p class="text-sm font-medium" style="color:var(--charcoal)">Mia K.</p>
+                            <p class="text-xs" style="color:#aaa">Google Review ⭐</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-hover flex-none w-80 bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="stars text-lg mb-3">★★★★★</div>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#555">"I came for the pilates and stayed for
+                        the community. After six months here, I'm stronger, more flexible, and I've made genuine
+                        friendships. Highly recommend."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold"
+                            style="background:var(--blush);color:var(--brown)">JP</div>
+                        <div>
+                            <p class="text-sm font-medium" style="color:var(--charcoal)">Jasmine P.</p>
+                            <p class="text-xs" style="color:#aaa">Google Review ⭐</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-hover flex-none w-80 bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="stars text-lg mb-3">★★★★★</div>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#555">"Sound Healing at Coreflex is pure magic.
+                        The space is beautiful, the instructors are knowledgeable, and every class leaves me feeling
+                        renewed. A true gem."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold"
+                            style="background:var(--blush);color:var(--brown)">RT</div>
+                        <div>
+                            <p class="text-sm font-medium" style="color:var(--charcoal)">Rachel T.</p>
+                            <p class="text-xs" style="color:#aaa">Google Review ⭐</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-hover flex-none w-80 bg-white rounded-2xl p-6 shadow-sm">
+                    <div class="stars text-lg mb-3">★★★★★</div>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#555">"As a complete beginner I was nervous,
+                        but the team made me feel so welcome. Now I come four times a week. This studio has truly
+                        transformed how I see myself."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold"
+                            style="background:var(--blush);color:var(--brown)">AL</div>
+                        <div>
+                            <p class="text-sm font-medium" style="color:var(--charcoal)">Amy L.</p>
+                            <p class="text-xs" style="color:#aaa">Google Review ⭐</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. FOOTER -->
+    <footer id="footer" style="background:var(--brown-dark);color:var(--cream)">
+        <!-- Top Row -->
+        <div class="max-w-7xl mx-auto px-6 pt-16 pb-10 border-b" style="border-color:rgba(250,247,242,0.12)">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
+                <!-- Logo + Contact -->
+                <div class="max-w-xs">
+                    <p style="font-family:'Playfair Display',serif;font-size:1.6rem;letter-spacing:-0.01em"
+                        class="mb-1">Coreflex</p>
+                    <p class="text-xs tracking-widest uppercase mb-5" style="color:var(--blush)">Pilates Studio
+                    </p>
+                    <p class="text-sm leading-relaxed mb-1" style="color:rgba(250,247,242,0.7)">📞 (02) 9123 4567</p>
+                    <p class="text-sm leading-relaxed" style="color:rgba(250,247,242,0.7)">📍 123 Wellness Lane, Sydney
+                        NSW 2000</p>
+                    <!-- Social Icons -->
+                    <div class="flex gap-4 mt-5">
+                        <a href="#" aria-label="Instagram" class="text-lg hover:opacity-70 transition-opacity">📸</a>
+                        <a href="#" aria-label="Facebook" class="text-lg hover:opacity-70 transition-opacity">👤</a>
+                        <a href="#" aria-label="TikTok" class="text-lg hover:opacity-70 transition-opacity">🎵</a>
+                        <a href="#" aria-label="YouTube" class="text-lg hover:opacity-70 transition-opacity">▶️</a>
+                    </div>
+                </div>
+                <!-- Footer Links -->
+                <div class="grid grid-cols-3 gap-10">
+                    <div>
+                        <h4 class="text-xs tracking-[0.18em] uppercase mb-4 font-medium" style="color:var(--blush)">Info
+                        </h4>
+                        <ul class="space-y-2.5">
+                            <li><a href="#about" class="text-sm hover:opacity-80 transition-opacity"
+                                    style="color:rgba(250,247,242,0.7)">About Us</a></li>
+                            <li><a href="#classes" class="text-sm hover:opacity-80 transition-opacity"
+                                    style="color:rgba(250,247,242,0.7)">Our Classes</a></li>
+                            <li><a href="#pillars" class="text-sm hover:opacity-80 transition-opacity"
+                                    style="color:rgba(250,247,242,0.7)">Our Philosophy</a></li>
+                            <li><a href="#instagram" class="text-sm hover:opacity-80 transition-opacity"
+                                    style="color:rgba(250,247,242,0.7)">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs tracking-[0.18em] uppercase mb-4 font-medium" style="color:var(--blush)">
+                            Studio</h4>
+                        <ul class="space-y-2.5">
+                            <li><a href="#schedule" class="text-sm hover:opacity-80 transition-opacity"
+                                    style="color:rgba(250,247,242,0.7)">Book a Class</a></li>
+                            <li><a href="#memberships" class="text-sm hover:opacity-80 transition-opacity"
+                                    style="color:rgba(250,247,242,0.7)">Memberships</a></li>
+                            <li><a href="#community" class="text-sm hover:opacity-80 transition-opacity"
+                                    style="color:rgba(250,247,242,0.7)">Events</a></li>
+                            <li><a href="#newsletter" class="text-sm hover:opacity-80 transition-opacity"
+                                    style="color:rgba(250,247,242,0.7)">Gift Cards</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs tracking-[0.18em] uppercase mb-4 font-medium" style="color:var(--blush)">
+                            Connect</h4>
+                        <ul class="space-y-2.5">
+                            <li><a href="#footer" class="text-sm hover:opacity-80 transition-opacity"
+                                    style="color:rgba(250,247,242,0.7)">Contact Us</a></li>
+                            <li><a href="#instagram" class="text-sm hover:opacity-80 transition-opacity"
+                                    style="color:rgba(250,247,242,0.7)">Instagram</a></li>
+                            <li><a href="#" class="text-sm hover:opacity-80 transition-opacity"
+                                    style="color:rgba(250,247,242,0.7)">Facebook</a></li>
+                            <li><a href="#newsletter" class="text-sm hover:opacity-80 transition-opacity"
+                                    style="color:rgba(250,247,242,0.7)">Newsletter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Acknowledgement of Country -->
+        <div class="max-w-7xl mx-auto px-6 py-6 border-b" style="border-color:rgba(250,247,242,0.08)">
+            <p class="text-xs italic leading-relaxed" style="color:rgba(250,247,242,0.45)">
+                Coreflex respectfully acknowledges the Traditional Custodians of the land on which our studio stands, and
+                pays respects to Elders past, present, and emerging. We honour the deep and ongoing connection of
+                Aboriginal and Torres Strait Islander peoples to Country.
+            </p>
+        </div>
+        <!-- Bottom Bar -->
+        <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p class="text-xs" style="color:rgba(250,247,242,0.4)">© 2025 Coreflex Pilates Studio. All rights
+                reserved.</p>
+            <div class="flex gap-5">
+                <a href="#" class="text-xs hover:opacity-80 transition-opacity"
+                    style="color:rgba(250,247,242,0.4)">Privacy Policy</a>
+                <a href="#" class="text-xs hover:opacity-80 transition-opacity"
+                    style="color:rgba(250,247,242,0.4)">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Navbar shadow on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Hamburger toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden', isOpen);
+            iconOpen.classList.toggle('hidden', !isOpen);
+            iconClose.classList.toggle('hidden', isOpen);
+        });
+
+        function closeMobile() {
+            mobileMenu.classList.add('hidden');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+        }
+
+        // Close mobile menu on outside click
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target)) {
+                closeMobile();
+            }
+        });
+    </script>
+</body>
+
+</html>

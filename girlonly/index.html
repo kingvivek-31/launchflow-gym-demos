@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Girls Fitness | Join The Club</title>
+  <meta name="description" content="All Girls Fitness — an empowering, female-only premium gym. Strong. Aesthetic. Community-driven." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --onyx: #0f0f0f;
+      --white: #fafafa;
+      --stone: #e8e0d8;
+      --blush: #c9a99a;
+      --blush-dark: #a07060;
+      --mid: #888;
+      --light-gray: #f4f1ee;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--onyx); overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 2.5rem;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+    #nav.scrolled { background: rgba(15,15,15,0.85); backdrop-filter: blur(12px); }
+    .nav-logo { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: rgba(250,250,250,0.75); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { background: var(--blush); color: var(--white); border: none; padding: 0.6rem 1.5rem; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .nav-cta:hover { background: var(--blush-dark); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--white); transition: all 0.3s; }
+
+    /* ── FULL-SCREEN NAV OVERLAY (mobile) ── */
+    #nav-overlay {
+      position: fixed; inset: 0; background: var(--onyx); z-index: 999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.4s;
+    }
+    #nav-overlay.open { opacity: 1; pointer-events: all; }
+    #nav-overlay ul { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 2rem; }
+    #nav-overlay ul a { color: var(--white); text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+    #nav-overlay ul a:hover { color: var(--blush); }
+    #nav-overlay .overlay-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; color: var(--white); font-size: 2rem; cursor: pointer; }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative; height: 100svh; min-height: 600px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1800&q=80') center/cover no-repeat;
+      transform: scale(1.06);
+      transition: transform 8s ease-out;
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(15,15,15,0.55) 0%, rgba(15,15,15,0.78) 100%); }
+    .hero-content { position: relative; z-index: 2; padding: 4rem 2.5rem; max-width: 700px; }
+    .hero-eyebrow { display: inline-block; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--blush); margin-bottom: 1.25rem; font-family: 'Montserrat', sans-serif; font-weight: 600; }
+    .hero-title { font-size: clamp(2.8rem, 8vw, 6.5rem); font-weight: 900; line-height: 1.0; color: var(--white); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: -0.01em; }
+    .hero-title em { font-style: italic; color: var(--blush); }
+    .hero-sub { font-size: 1rem; color: rgba(250,250,250,0.72); max-width: 420px; margin-bottom: 2.5rem; line-height: 1.7; font-weight: 300; }
+    .btn-primary { display: inline-block; background: var(--blush); color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 1rem 2.5rem; border: none; cursor: pointer; transition: background 0.25s, transform 0.25s, box-shadow 0.25s; text-decoration: none; }
+    .btn-primary:hover { background: var(--blush-dark); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.25); }
+    .btn-outline { display: inline-block; background: transparent; color: var(--white); border: 1.5px solid rgba(250,250,250,0.5); font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 1rem 2.5rem; cursor: pointer; transition: all 0.25s; text-decoration: none; margin-left: 1rem; }
+    .btn-outline:hover { background: var(--white); color: var(--onyx); border-color: var(--white); }
+    .hero-scroll { position: absolute; bottom: 2rem; right: 2.5rem; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: rgba(250,250,250,0.5); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Montserrat', sans-serif; }
+    .hero-scroll::after { content: ''; display: block; width: 1px; height: 60px; background: linear-gradient(to bottom, rgba(250,250,250,0.5), transparent); animation: scrollLine 1.8s ease-in-out infinite; }
+    @keyframes scrollLine { 0%,100%{opacity:1;transform:scaleY(1)} 50%{opacity:0.3;transform:scaleY(0.6)} }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap { background: var(--blush); padding: 0.85rem 0; overflow: hidden; }
+    .marquee-track { display: flex; gap: 0; animation: marquee 22s linear infinite; width: max-content; }
+    .marquee-item { white-space: nowrap; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); padding: 0 3rem; }
+    .marquee-dot { color: rgba(255,255,255,0.5); }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── SECTION BASE ── */
+    section { padding: 7.5rem 2.5rem; }
+    @media(max-width:768px) { section { padding: 4rem 1.25rem; } }
+    .section-label { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--blush); margin-bottom: 1rem; }
+    .section-title { font-family: 'Montserrat', sans-serif; font-size: clamp(1.8rem, 4vw, 3.2rem); font-weight: 900; line-height: 1.1; text-transform: uppercase; color: var(--onyx); margin-bottom: 1rem; }
+    .section-title em { font-style: italic; color: var(--blush); }
+
+    /* ── ABOUT SPLIT ── */
+    #about { background: var(--onyx); display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
+    .about-img { position: relative; min-height: 600px; overflow: hidden; }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    .about-img:hover img { transform: scale(1.04); }
+    .about-text { display: flex; flex-direction: column; justify-content: center; padding: 5rem 4rem; }
+    .about-text .section-title { color: var(--white); }
+    .about-text p { color: rgba(250,250,250,0.65); line-height: 1.8; font-weight: 300; margin-bottom: 2rem; max-width: 460px; }
+    .about-text .btn-primary { align-self: flex-start; }
+
+    /* ── MEMBERSHIP DROPS ── */
+    #membership { background: var(--light-gray); text-align: center; }
+    .drops-header { margin-bottom: 3.5rem; }
+    .drops-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: rgba(0,0,0,0.08); max-width: 1200px; margin: 0 auto; }
+    .drop-card { background: var(--white); position: relative; overflow: hidden; cursor: pointer; }
+    .drop-card-img { position: relative; padding-top: 130%; overflow: hidden; }
+    .drop-card-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .drop-card:hover .drop-card-img img { transform: scale(1.07); }
+    .drop-badge { position: absolute; top: 1rem; left: 1rem; background: var(--blush); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.35rem 0.75rem; z-index: 2; }
+    .drop-card-body { padding: 1.5rem 1.25rem; text-align: left; }
+    .drop-card-name { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--onyx); margin-bottom: 0.25rem; }
+    .drop-card-tagline { font-size: 0.78rem; color: var(--mid); margin-bottom: 1rem; }
+    .drop-card-price { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--onyx); }
+    .drop-card-price span { font-size: 0.7rem; font-weight: 500; color: var(--mid); }
+    .drop-card-btn { position: absolute; bottom: 1.25rem; right: 1.25rem; background: var(--onyx); color: var(--white); border: none; font-family: 'Montserrat', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.55rem 1.1rem; cursor: pointer; transition: background 0.2s; }
+    .drop-card-btn:hover { background: var(--blush); }
+
+    /* ── COMMUNITY GRID ── */
+    #community { background: var(--white); padding-bottom: 0; }
+    .community-header { text-align: center; margin-bottom: 3rem; }
+    .grid-asymm { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: auto; gap: 4px; }
+    .grid-item { overflow: hidden; position: relative; }
+    .grid-item.tall { grid-row: span 2; }
+    .grid-item.wide { grid-column: span 2; }
+    .grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; min-height: 280px; }
+    .grid-item:hover img { transform: scale(1.05); }
+    .grid-overlay { position: absolute; inset: 0; background: rgba(15,15,15,0); transition: background 0.3s; display: flex; align-items: center; justify-content: center; }
+    .grid-overlay span { color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0; transition: opacity 0.3s; }
+    .grid-item:hover .grid-overlay { background: rgba(15,15,15,0.35); }
+    .grid-item:hover .grid-overlay span { opacity: 1; }
+
+    /* ── STATS BAND ── */
+    #stats { background: var(--onyx); padding: 5rem 2.5rem; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; text-align: center; }
+    .stat-num { font-family: 'Montserrat', sans-serif; font-size: clamp(2.5rem,5vw,4rem); font-weight: 900; color: var(--blush); line-height: 1; }
+    .stat-label { font-size: 0.72rem; color: rgba(250,250,250,0.5); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 0.5rem; font-family: 'Montserrat', sans-serif; font-weight: 500; }
+
+    /* ── TRAINERS ── */
+    #trainers { background: var(--light-gray); }
+    .trainers-header { text-align: center; margin-bottom: 3.5rem; }
+    .trainers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+    .trainer-card { background: var(--white); overflow: hidden; }
+    .trainer-img { position: relative; padding-top: 120%; overflow: hidden; }
+    .trainer-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.6s ease; }
+    .trainer-card:hover .trainer-img img { transform: scale(1.04); }
+    .trainer-info { padding: 1.5rem; }
+    .trainer-name { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.25rem; }
+    .trainer-role { font-size: 0.75rem; color: var(--blush); font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    /* ── LEAD CAPTURE ── */
+    #join { background: var(--onyx); text-align: center; }
+    .join-inner { max-width: 600px; margin: 0 auto; }
+    .join-inner .section-title { color: var(--white); margin-bottom: 0.75rem; }
+    .join-inner p { color: rgba(250,250,250,0.6); margin-bottom: 2.5rem; line-height: 1.7; font-weight: 300; }
+    .form-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .form-row input { flex: 1; min-width: 200px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: var(--white); font-family: 'Inter', sans-serif; font-size: 0.85rem; padding: 0.9rem 1.25rem; outline: none; transition: border-color 0.2s; }
+    .form-row input::placeholder { color: rgba(255,255,255,0.3); }
+    .form-row input:focus { border-color: var(--blush); }
+    .form-status { font-size: 0.82rem; margin-top: 1rem; min-height: 1.2rem; transition: color 0.2s; }
+    .form-status.success { color: #7dcea0; }
+    .form-status.error { color: #e88; }
+    .form-status.loading { color: var(--blush); }
+
+    /* ── FOOTER ── */
+    footer { background: #070707; color: rgba(250,250,250,0.45); padding: 4rem 2.5rem 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 4rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+    .footer-logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.2rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); margin-bottom: 1rem; }
+    .footer-col h5 { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blush); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-col ul a { color: rgba(250,250,250,0.45); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; font-size: 0.72rem; }
+
+    /* ── DRAWER (Sign-Up Modal) ── */
+    #drawer-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.35s; }
+    #drawer-backdrop.open { opacity: 1; pointer-events: all; }
+    #drawer { position: fixed; top: 0; right: -480px; width: 100%; max-width: 480px; height: 100%; background: var(--white); z-index: 2001; padding: 3rem 2.5rem; overflow-y: auto; transition: right 0.4s cubic-bezier(0.25,0.46,0.45,0.94); display: flex; flex-direction: column; }
+    #drawer.open { right: 0; }
+    .drawer-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--mid); transition: color 0.2s; }
+    .drawer-close:hover { color: var(--onyx); }
+    #drawer h3 { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; color: var(--onyx); margin-bottom: 0.5rem; margin-top: 1rem; }
+    #drawer .drawer-plan { display: inline-block; background: var(--blush); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.75rem; margin-bottom: 1.5rem; }
+    #drawer p { font-size: 0.88rem; color: var(--mid); line-height: 1.7; margin-bottom: 2rem; }
+    .drawer-input { width: 100%; border: 1px solid rgba(0,0,0,0.12); padding: 0.85rem 1rem; font-family: 'Inter', sans-serif; font-size: 0.85rem; margin-bottom: 0.75rem; outline: none; transition: border-color 0.2s; color: var(--onyx); }
+    .drawer-input:focus { border-color: var(--blush); }
+    .drawer-submit { width: 100%; background: var(--onyx); color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 1rem; border: none; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s; }
+    .drawer-submit:hover { background: var(--blush); }
+    .drawer-status { text-align: center; font-size: 0.82rem; margin-top: 1rem; min-height: 1.2rem; }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 900px) {
+      #about { grid-template-columns: 1fr; }
+      .about-img { min-height: 350px; }
+      .drops-grid { grid-template-columns: 1fr 1fr; }
+      .grid-asymm { grid-template-columns: 1fr 1fr; }
+      .grid-item.tall { grid-row: span 1; }
+      .grid-item.wide { grid-column: span 2; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .trainers-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width: 600px) {
+      #nav { padding: 1rem 1.25rem; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .about-text { padding: 3rem 1.5rem; }
+      .drops-grid { grid-template-columns: 1fr; }
+      .trainers-grid { grid-template-columns: 1fr; }
+      .grid-asymm { grid-template-columns: 1fr 1fr; }
+      .grid-item.wide { grid-column: span 1; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .hero-content { padding: 2.5rem 1.25rem; }
+      .hero-title { font-size: clamp(2rem,12vw,3.5rem); }
+      .btn-outline { margin-left: 0; margin-top: 0.75rem; }
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up-d1 { transition-delay: 0.1s; }
+    .fade-up-d2 { transition-delay: 0.2s; }
+    .fade-up-d3 { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav id="nav">
+  <a href="#" class="nav-logo">All Girls Fitness</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#membership">Memberships</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#trainers">Trainers</a></li>
+    <li><a href="#join">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openDrawer('Elite', '£89/mo')">Join The Club</button>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Full-screen mobile nav overlay -->
+<div id="nav-overlay">
+  <button class="overlay-close" id="overlay-close">✕</button>
+  <ul>
+    <li><a href="#about" onclick="closeOverlay()">About</a></li>
+    <li><a href="#membership" onclick="closeOverlay()">Memberships</a></li>
+    <li><a href="#community" onclick="closeOverlay()">Community</a></li>
+    <li><a href="#trainers" onclick="closeOverlay()">Trainers</a></li>
+    <li><a href="#join" onclick="closeOverlay()">Contact</a></li>
+  </ul>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="hero">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow fade-up">Female Only · Premium Fitness</span>
+    <h1 class="hero-title fade-up fade-up-d1">Built For<br/><em>Her.</em></h1>
+    <p class="hero-sub fade-up fade-up-d2">A sanctuary where strength meets aesthetic. Train hard. Look after yourself. Be part of something bigger.</p>
+    <div class="fade-up fade-up-d3">
+      <button class="btn-primary" onclick="openDrawer('Elite','£89/mo')">Start Your Journey</button>
+      <a href="#membership" class="btn-outline">View Memberships</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">All Girls Fitness</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Empowering Women</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Premium Training</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Female Only Club</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Build Your Best Self</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">All Girls Fitness</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Empowering Women</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Premium Training</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Female Only Club</span><span class="marquee-item marquee-dot">·</span>
+    <span class="marquee-item">Build Your Best Self</span><span class="marquee-item marquee-dot">·</span>
+  </div>
+</div>
+
+<!-- ══════════ ABOUT ══════════ -->
+<section id="about">
+  <div class="about-img">
+    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&q=80" alt="Women lifting weights" loading="lazy" />
+  </div>
+  <div class="about-text">
+    <p class="section-label fade-up">Our Story</p>
+    <h2 class="section-title fade-up fade-up-d1">More Than<br/><em>A Gym.</em></h2>
+    <p class="fade-up fade-up-d2">We built All Girls Fitness because we know what it feels like to walk into a space and not feel like it was made for you. This is your space — designed from the ground up for women who are done playing small.</p>
+    <p class="fade-up fade-up-d2">State-of-the-art equipment, world-class coaches, and a community that lifts each other up. Literally.</p>
+    <button class="btn-primary fade-up fade-up-d3" onclick="openDrawer('Elite','£89/mo')">Join The Club</button>
+  </div>
+</section>
+
+<!-- ══════════ MEMBERSHIP DROPS ══════════ -->
+<section id="membership">
+  <div class="drops-header fade-up">
+    <p class="section-label">The Memberships</p>
+    <h2 class="section-title">Choose Your<br/><em>Drop.</em></h2>
+  </div>
+  <div class="drops-grid">
+
+    <div class="drop-card fade-up">
+      <div class="drop-card-img">
+        <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=700&q=80" alt="Starter" loading="lazy" />
+        <span class="drop-badge">Most Popular</span>
+      </div>
+      <div class="drop-card-body">
+        <p class="drop-card-name">Starter</p>
+        <p class="drop-card-tagline">Gym floor access · 3 classes/week · App included</p>
+        <p class="drop-card-price">£49<span>/mo</span></p>
+      </div>
+      <button class="drop-card-btn" onclick="openDrawer('Starter','£49/mo')">Select →</button>
+    </div>
+
+    <div class="drop-card fade-up fade-up-d1">
+      <div class="drop-card-img">
+        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=700&q=80" alt="Elite" loading="lazy" />
+        <span class="drop-badge" style="background:var(--onyx)">Best Value</span>
+      </div>
+      <div class="drop-card-body">
+        <p class="drop-card-name">Elite</p>
+        <p class="drop-card-tagline">Unlimited access · All classes · 1 PT session/mo</p>
+        <p class="drop-card-price">£89<span>/mo</span></p>
+      </div>
+      <button class="drop-card-btn" onclick="openDrawer('Elite','£89/mo')">Select →</button>
+    </div>
+
+    <div class="drop-card fade-up fade-up-d2">
+      <div class="drop-card-img">
+        <img src="https://images.unsplash.com/photo-1609899537878-47b5e3a83bc8?w=700&q=80" alt="VIP" loading="lazy" />
+        <span class="drop-badge" style="background:#c29b5a">VIP</span>
+      </div>
+      <div class="drop-card-body">
+        <p class="drop-card-name">VIP</p>
+        <p class="drop-card-tagline">Everything in Elite · Weekly PT · Nutrition coaching</p>
+        <p class="drop-card-price">£149<span>/mo</span></p>
+      </div>
+      <button class="drop-card-btn" onclick="openDrawer('VIP','£149/mo')">Select →</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ COMMUNITY GRID ══════════ -->
+<section id="community" style="padding-bottom:0;">
+  <div class="community-header fade-up">
+    <p class="section-label">Community</p>
+    <h2 class="section-title">Spotted: <em>IRL Looks</em><br/>You'll Love.</h2>
+  </div>
+  <div class="grid-asymm">
+    <div class="grid-item tall">
+      <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=80" alt="Community 1" loading="lazy" />
+      <div class="grid-overlay"><span>Strong</span></div>
+    </div>
+    <div class="grid-item">
+      <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=600&q=80" alt="Community 2" loading="lazy" />
+      <div class="grid-overlay"><span>Aesthetic</span></div>
+    </div>
+    <div class="grid-item">
+      <img src="https://images.unsplash.com/photo-1518310383802-640c2de311b2?w=600&q=80" alt="Community 3" loading="lazy" />
+      <div class="grid-overlay"><span>Fierce</span></div>
+    </div>
+    <div class="grid-item tall">
+      <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=600&q=80" alt="Community 4" loading="lazy" />
+      <div class="grid-overlay"><span>Elevate</span></div>
+    </div>
+    <div class="grid-item wide">
+      <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=900&q=80" alt="Community 5" loading="lazy" style="min-height:320px;" />
+      <div class="grid-overlay"><span>Together</span></div>
+    </div>
+    <div class="grid-item">
+      <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74?w=600&q=80" alt="Community 6" loading="lazy" />
+      <div class="grid-overlay"><span>Power</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ STATS ══════════ -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="fade-up">
+      <div class="stat-num" data-target="2400">0</div>
+      <p class="stat-label">Club Members</p>
+    </div>
+    <div class="fade-up fade-up-d1">
+      <div class="stat-num" data-target="18">0</div>
+      <p class="stat-label">Expert Trainers</p>
+    </div>
+    <div class="fade-up fade-up-d2">
+      <div class="stat-num" data-target="60">0</div>
+      <p class="stat-label">Weekly Classes</p>
+    </div>
+    <div class="fade-up fade-up-d3">
+      <div class="stat-num" data-target="5">0</div>
+      <p class="stat-label" style="white-space:nowrap">★★★★★ Rating</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TRAINERS ══════════ -->
+<section id="trainers">
+  <div class="trainers-header fade-up">
+    <p class="section-label">Meet The Team</p>
+    <h2 class="section-title">Your <em>Coaches.</em></h2>
+  </div>
+  <div class="trainers-grid">
+    <div class="trainer-card fade-up">
+      <div class="trainer-img">
+        <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&q=80" alt="Trainer Maya" loading="lazy" />
+      </div>
+      <div class="trainer-info">
+        <p class="trainer-name">Maya Osei</p>
+        <p class="trainer-role">Head of Strength & Conditioning</p>
+      </div>
+    </div>
+    <div class="trainer-card fade-up fade-up-d1">
+      <div class="trainer-img">
+        <img src="https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=600&q=80" alt="Trainer Suki" loading="lazy" />
+      </div>
+      <div class="trainer-info">
+        <p class="trainer-name">Suki Patel</p>
+        <p class="trainer-role">Pilates & Mindful Movement</p>
+      </div>
+    </div>
+    <div class="trainer-card fade-up fade-up-d2">
+      <div class="trainer-img">
+        <img src="https://images.unsplash.com/photo-1593229874334-90d965f27c42?w=600&q=80" alt="Trainer Zara" loading="lazy" />
+      </div>
+      <div class="trainer-info">
+        <p class="trainer-name">Zara Coleman</p>
+        <p class="trainer-role">HIIT & Nutrition Coach</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ LEAD CAPTURE / JOIN ══════════ -->
+<section id="join">
+  <div class="join-inner">
+    <p class="section-label fade-up">Get Started</p>
+    <h2 class="section-title fade-up fade-up-d1">Join The<br/><em>Movement.</em></h2>
+    <p class="fade-up fade-up-d2">Drop your details and one of our team will be in touch within 24 hours to tailor the perfect plan for you.</p>
+    <!-- Lead capture form — connects to Stitch API service layer -->
+    <form id="lead-form" onsubmit="handleLeadForm(event)" class="fade-up fade-up-d3">
+      <div class="form-row">
+        <input type="text" id="lf-name" placeholder="First Name" required />
+        <input type="text" id="lf-surname" placeholder="Last Name" required />
+      </div>
+      <div class="form-row">
+        <input type="email" id="lf-email" placeholder="Email Address" required />
+        <input type="tel" id="lf-phone" placeholder="Phone Number" />
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Claim My Free Trial →</button>
+      <p class="form-status" id="lead-status"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <p class="footer-logo">All Girls Fitness</p>
+      <p style="font-size:0.82rem;line-height:1.7;max-width:280px;">A female-only premium gym experience. Train. Thrive. Belong.</p>
+      <p style="margin-top:1.5rem;font-size:0.78rem;">📍 12 Fitzroy Street, London W1T 4BQ</p>
+      <p style="font-size:0.78rem;margin-top:0.35rem;">📞 020 7946 0123</p>
+    </div>
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#membership">Memberships</a></li>
+        <li><a href="#trainers">Our Trainers</a></li>
+        <li><a href="#community">Community</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Support</h5>
+      <ul>
+        <li><a href="#join">Contact</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Class Schedule</a></li>
+        <li><a href="#">Corporate</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Follow</h5>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">Spotify</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 All Girls Fitness Ltd. All rights reserved.</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="#" style="color:inherit;text-decoration:none;">Privacy Policy</a>
+      <a href="#" style="color:inherit;text-decoration:none;">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════ SIGN-UP DRAWER ══════════ -->
+<div id="drawer-backdrop" onclick="closeDrawer()"></div>
+<div id="drawer">
+  <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  <h3>Join The Club</h3>
+  <span class="drawer-plan" id="drawer-plan-label">Elite — £89/mo</span>
+  <p>Complete the form below and we'll get you started within 24 hours. No commitment. Cancel anytime.</p>
+  <input class="drawer-input" id="d-name" type="text" placeholder="Full Name" />
+  <input class="drawer-input" id="d-email" type="email" placeholder="Email Address" />
+  <input class="drawer-input" id="d-phone" type="tel" placeholder="Phone Number (optional)" />
+  <select class="drawer-input" id="d-goal" style="color:var(--mid);">
+    <option value="">My main goal is…</option>
+    <option>Build strength</option>
+    <option>Lose fat</option>
+    <option>Improve fitness</option>
+    <option>Tone & sculpt</option>
+    <option>Stress relief</option>
+  </select>
+  <!-- Stitch API integration: form submits to stitchService.signUpLead() -->
+  <button class="drawer-submit" onclick="handleDrawerSubmit()">Confirm My Spot →</button>
+  <p class="drawer-status" id="drawer-status"></p>
+</div>
+
+<script>
+  // ══ Stitch API Service Layer ══
+  // Abstracts all Stitch API calls. Swap the baseURL for your live endpoint.
+  const StitchService = {
+    baseURL: 'https://stitch.example.com/api', // Replace with real Stitch endpoint
+    
+    /**
+     * submitLead — Sends lead capture data to Stitch.
+     * Handles async state: loading / success / error.
+     */
+    async submitLead(payload) {
+      // Simulate API call (replace with actual fetch to Stitch endpoint)
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (payload.email && payload.email.includes('@')) {
+            resolve({ success: true, id: 'agf_' + Date.now() });
+          } else {
+            reject(new Error('Invalid email address.'));
+          }
+        }, 1200);
+      });
+      
+      // Real Stitch API call example:
+      // const res = await fetch(`${this.baseURL}/leads`, {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json', 'X-Stitch-Key': 'YOUR_KEY' },
+      //   body: JSON.stringify(payload)
+      // });
+      // if (!res.ok) throw new Error('Submission failed');
+      // return res.json();
+    },
+
+    /**
+     * fetchClasses — Fetches class schedule from Stitch.
+     */
+    async fetchClasses() {
+      // Real implementation: return fetch(`${this.baseURL}/classes`).then(r => r.json());
+      return Promise.resolve([]);
+    }
+  };
+
+  // ══ Nav scroll effect ══
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ══ Hero image zoom on load ══
+  window.addEventListener('load', () => {
+    document.getElementById('hero-bg').classList.add('loaded');
+  });
+
+  // ══ Mobile nav ══
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  document.getElementById('overlay-close').addEventListener('click', closeOverlay);
+  function closeOverlay() {
+    document.getElementById('nav-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ══ Drawer (slide-out sign-up) ══
+  function openDrawer(plan, price) {
+    document.getElementById('drawer-plan-label').textContent = `${plan} — ${price}`;
+    document.getElementById('drawer-status').textContent = '';
+    document.getElementById('d-name').value = '';
+    document.getElementById('d-email').value = '';
+    document.getElementById('d-phone').value = '';
+    document.getElementById('drawer-backdrop').classList.add('open');
+    document.getElementById('drawer').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    document.getElementById('drawer-backdrop').classList.remove('open');
+    document.getElementById('drawer').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ══ Drawer form submit (Stitch API) ══
+  async function handleDrawerSubmit() {
+    const status = document.getElementById('drawer-status');
+    const btn = document.querySelector('.drawer-submit');
+    const payload = {
+      name: document.getElementById('d-name').value.trim(),
+      email: document.getElementById('d-email').value.trim(),
+      phone: document.getElementById('d-phone').value.trim(),
+      goal: document.getElementById('d-goal').value,
+      plan: document.getElementById('drawer-plan-label').textContent,
+      source: 'AGF-website-drawer'
+    };
+    if (!payload.name || !payload.email) {
+      status.textContent = 'Please fill in your name and email.';
+      status.style.color = '#e88888';
+      return;
+    }
+    status.textContent = 'Saving your spot…';
+    status.style.color = 'var(--blush)';
+    btn.disabled = true;
+    try {
+      await StitchService.submitLead(payload);
+      status.textContent = '✓ You\'re in! Check your email for next steps.';
+      status.style.color = '#7dcea0';
+      setTimeout(closeDrawer, 2800);
+    } catch (err) {
+      status.textContent = `Error: ${err.message}`;
+      status.style.color = '#e88888';
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  // ══ Lead capture form (inline) ══
+  async function handleLeadForm(e) {
+    e.preventDefault();
+    const status = document.getElementById('lead-status');
+    const payload = {
+      name: document.getElementById('lf-name').value.trim(),
+      surname: document.getElementById('lf-surname').value.trim(),
+      email: document.getElementById('lf-email').value.trim(),
+      phone: document.getElementById('lf-phone').value.trim(),
+      source: 'AGF-website-inline'
+    };
+    status.textContent = 'Sending…';
+    status.className = 'form-status loading';
+    try {
+      await StitchService.submitLead(payload);
+      status.textContent = '✓ Perfect! We\'ll be in touch within 24 hours.';
+      status.className = 'form-status success';
+      document.getElementById('lead-form').reset();
+    } catch (err) {
+      status.textContent = `Something went wrong. Please try again.`;
+      status.className = 'form-status error';
+    }
+  }
+
+  // ══ Intersection Observer — scroll-trigger fade-up + stat counters ══
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Animate stat numbers
+        if (entry.target.dataset.target) {
+          animateCount(entry.target);
+        }
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  document.querySelectorAll('[data-target]').forEach(el => observer.observe(el));
+
+  function animateCount(el) {
+    const target = +el.dataset.target;
+    const duration = 1600;
+    const step = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = target < 10 ? current.toFixed(1) : Math.floor(current).toLocaleString();
+      if (current >= target) {
+        el.textContent = target < 10 ? target.toFixed(1) : target.toLocaleString() + (target === 2400 ? '+' : '');
+        clearInterval(timer);
+      }
+    }, 16);
+  }
+</script>
+</body>
+</html>
