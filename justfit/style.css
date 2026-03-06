@@ -1,0 +1,166 @@
+/* ════════════════════════════════
+   JUST FITT GYM — style.css
+   Custom styles on top of Tailwind
+   ════════════════════════════════ */
+
+/* ── Cursor ─────────────────────── */
+*, *::before, *::after { cursor: none !important; }
+
+.cursor-dot {
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #D72638; pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease;
+}
+.cursor-ring {
+  position: fixed; top: 0; left: 0; z-index: 9998;
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1.5px solid rgba(215, 38, 56, 0.6);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.18s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+}
+.cursor-ring.hovering {
+  width: 48px; height: 48px;
+  border-color: rgba(215, 38, 56, 0.9);
+  background: rgba(215, 38, 56, 0.08);
+}
+
+/* ── Navbar ──────────────────────── */
+nav.scrolled {
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(215, 38, 56, 0.15);
+}
+.nav-link.active-page { color: #D72638 !important; }
+.nav-link.active-page::after { width: 100% !important; }
+
+/* ── Grid overlay ─────────────────── */
+.grid-overlay {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background-image:
+    linear-gradient(rgba(215,38,56,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(215,38,56,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Hero ────────────────────────── */
+.hero-bg-img {
+  position: absolute; inset: 0; z-index: 0;
+  background-image: url('assets/images/hero-bg.png');
+  background-size: cover; background-position: center;
+  filter: brightness(0.35);
+}
+.hero-gradient {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(120,10,20,0.25) 100%);
+}
+
+/* ── Section eyebrow label ─────────── */
+.eyebrow {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #D72638;
+}
+
+/* ── Ticker ──────────────────────── */
+.ticker-track {
+  display: flex; white-space: nowrap;
+  animation: ticker 35s linear infinite;
+  will-change: transform;
+}
+.ticker-track:hover { animation-play-state: paused; }
+
+/* ── Scroll indicator ─────────────── */
+.scroll-line {
+  width: 1px; height: 60px;
+  background: linear-gradient(to bottom, #D72638, transparent);
+  margin: 8px auto 0;
+  animation: scroll-pulse 2s ease-in-out infinite;
+}
+@keyframes scroll-pulse {
+  0%,100% { opacity: 0.4; transform: scaleY(1); }
+  50%      { opacity: 1;   transform: scaleY(1.1); }
+}
+
+/* ── Peak pulse dot ──────────────── */
+.peak-dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: #D72638;
+  box-shadow: 0 0 0 0 rgba(215,38,56,0.7);
+  animation: peak-ring 2s ease-in-out infinite;
+}
+@keyframes peak-ring {
+  0%  { box-shadow: 0 0 0 0 rgba(215,38,56,0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(215,38,56,0); }
+  100%{ box-shadow: 0 0 0 0 rgba(215,38,56,0); }
+}
+
+/* ── Page hero (inner pages) ─────── */
+.page-hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background-size: cover; background-position: center;
+  filter: brightness(0.28);
+}
+
+/* ── Trainer card image ──────────── */
+.trainer-img-wrap {
+  position: relative; overflow: hidden;
+  border: 1px solid rgba(215,38,56,0.25);
+}
+.trainer-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.trainer-img-wrap::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(215,38,56,0.25), transparent 60%);
+}
+
+/* ── Feature cards ───────────────── */
+.feature-card-img {
+  width: 100%; height: 180px; object-fit: cover;
+  filter: brightness(0.7) saturate(0.8);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+.feature-card-wrap:hover .feature-card-img {
+  filter: brightness(0.9) saturate(1);
+  transform: scale(1.05);
+}
+
+/* ── Class badge colours ─────────── */
+.badge-strength  { background: rgba(215,38,56,0.15); color: #F03A4E; border-color: rgba(215,38,56,0.3); }
+.badge-cardio    { background: rgba(251,146,60,0.12); color: #FB923C; border-color: rgba(251,146,60,0.3); }
+.badge-personal  { background: rgba(99,102,241,0.12); color: #818CF8; border-color: rgba(99,102,241,0.3); }
+.badge-wellness  { background: rgba(34,197,94,0.12);  color: #4ADE80; border-color: rgba(34,197,94,0.3); }
+.badge-recovery  { background: rgba(56,189,248,0.12); color: #38BDF8; border-color: rgba(56,189,248,0.3); }
+
+/* ── Filter tabs ─────────────────── */
+.filter-tab.active-tab {
+  background: #D72638; color: #fff; border-color: #D72638;
+}
+
+/* ── Pricing featured card glow ───── */
+.pricing-featured {
+  background: linear-gradient(160deg, #1a0508 0%, #0A0A0A 100%);
+  border-color: #D72638 !important;
+  box-shadow: 0 0 40px rgba(215,38,56,0.18), inset 0 1px 0 rgba(215,38,56,0.2);
+}
+
+/* ── Scroll fade-up reveal ─────────── */
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Page transition ─────────────── */
+#app { animation: fadeUp 0.35s ease both; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Mobile ──────────────────────── */
+@media (max-width: 768px) {
+  .cursor-dot, .cursor-ring { display: none; }
+}
