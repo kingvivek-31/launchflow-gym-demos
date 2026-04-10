@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .glass-panel {
+        @apply bg-white/70 backdrop-blur-md border border-gray-100 shadow-xl;
+    }
+    
+    .glass-pill {
+        @apply bg-black/60 backdrop-blur-lg border border-white/20 rounded-full;
+    }
+    
+    .custom-card {
+        @apply bg-white border border-gray-100 shadow-sm transition-all duration-300;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F3F4F6; /* gray-100 */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D1D5DB; /* gray-300 */
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #E50914; /* primary */
+}
+
+/* Gradient text utility */
+.text-gradient {
+    background: linear-gradient(to right, #E50914, #FF5722);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Base custom animations applied in index block via tailwind config but adding some native ones if needed */
+@keyframes kenburns {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+.animate-kenburns {
+    animation: kenburns 20s ease-out infinite alternate;
+}
+
+/* Disable hover effects on mobile */
+@media (max-width: 768px) {
+    .hover\:scale-105:hover,
+    .group-hover\:scale-110:hover,
+    .group-hover\:translate-y-0 .translate-y-4 {
+        transform: none !important;
+    }
+    
+    .group-hover\:opacity-100 .opacity-0 {
+        opacity: 1 !important;
+    }
+}

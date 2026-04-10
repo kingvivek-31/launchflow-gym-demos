@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3 Fitness | Best Gym in Rohini, Delhi</title>
+    <meta name="description" content="Transform your body at Rohini's most energetic gym. Expert trainers, spacious setup, and a supportive community. Book your free trial today!">
+    <meta name="keywords" content="Gym in Rohini Delhi, Best gym near me, Fitness center Rohini, Q3 Fitness">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E50914', /* Bold Gym Red */
+                        secondary: '#111111', /* Dark contrast */
+                        light: {
+                            100: '#FFFFFF',
+                            200: '#F9FAFB',
+                            300: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['"Barlow Condensed"', 'sans-serif'],
+                        body: ['"Inter"', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: 1, boxShadow: '0 0 15px rgba(229, 9, 20, 0.5)' },
+                            '50%': { opacity: .8, boxShadow: '0 0 25px rgba(229, 9, 20, 0.7)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light-100 text-gray-700 font-body antialiased selection:bg-primary selection:text-white">
+
+    <!-- Navigation -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center bg-transparent">
+        <a href="#" class="text-3xl font-heading font-black tracking-widest text-white uppercase flex items-center gap-2">
+            <span class="text-primary text-4xl">Q3</span> Fitness
+        </a>
+        
+        <nav class="hidden md:flex gap-8 items-center font-heading text-lg font-semibold tracking-wider uppercase text-white/90">
+            <a href="#about" class="hover:text-primary transition-colors">About</a>
+            <a href="#features" class="hover:text-primary transition-colors">Features</a>
+            <a href="#audience" class="hover:text-primary transition-colors">For You</a>
+            <a href="#gallery" class="hover:text-primary transition-colors">Vibe</a>
+        </nav>
+
+        <div class="hidden md:block">
+            <button onclick="openModal()" class="bg-primary text-white font-heading font-bold uppercase tracking-wider px-6 py-2 rounded-md hover:bg-secondary hover:text-white hover:shadow-[0_0_20px_rgba(229,9,20,0.6)] transition-all duration-300 transform hover:-translate-y-1">
+                Book Free Trial
+            </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-white hover:text-primary drop-shadow-md" id="mobile-menu-btn">
+            <span class="material-icons-outlined text-3xl">menu</span>
+        </button>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-md z-40 hidden flex-col items-center justify-center gap-8 font-heading text-2xl uppercase tracking-wider font-bold">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-gray-900 hover:text-primary">
+            <span class="material-icons-outlined text-4xl">close</span>
+        </button>
+        <a href="#about" class="mobile-link text-gray-900 hover:text-primary">About</a>
+        <a href="#features" class="mobile-link text-gray-900 hover:text-primary">Features</a>
+        <a href="#audience" class="mobile-link text-gray-900 hover:text-primary">For You</a>
+        <a href="#gallery" class="mobile-link text-gray-900 hover:text-primary">Vibe</a>
+        <button onclick="openModal()" class="mt-4 bg-primary text-white px-8 py-3 rounded-md animate-pulse-glow">Book Free Trial</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden hero-overlay">
+        <div class="absolute inset-0 z-0">
+            <img src="Screenshot 2026-04-10 at 11.11.02 PM.png" alt="Q3 Fitness Gym Interior" class="w-full h-full object-cover object-center scale-105 animate-[kenburns_20s_ease-out_infinite_alternate]" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center">
+            <!-- Trust Badge -->
+            <div class="glass-pill px-4 py-2 flex items-center gap-2 mb-8 animate-float">
+                <div class="flex text-primary text-sm">
+                    <span class="material-icons-outlined text-sm">star</span>
+                    <span class="material-icons-outlined text-sm">star</span>
+                    <span class="material-icons-outlined text-sm">star</span>
+                    <span class="material-icons-outlined text-sm">star</span>
+                    <span class="material-icons-outlined text-sm">star</span>
+                </div>
+                <span class="font-semibold text-white">4.9/5 Average Rating</span>
+                <span class="text-gray-300 text-sm">(235+ Reviews)</span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-heading font-black text-white uppercase tracking-tighter leading-[0.9] mb-6">
+                Transform Your Body at <br class="hidden md:block"/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-500 italic drop-shadow-md">Rohini's Most Energetic</span> Gym
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-200 font-body max-w-2xl mx-auto mb-10 font-light drop-shadow">
+                Expert Trainers. <span class="text-white font-semibold">Spacious Setup.</span> Real Results.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
+                <button onclick="openModal()" class="w-full sm:w-auto bg-primary text-white px-8 py-4 font-heading font-bold text-xl uppercase tracking-wider rounded-md hover:shadow-[0_0_30px_rgba(229,9,20,0.8)] transition-all transform hover:-translate-y-1 animate-pulse-glow">
+                    Book Free Trial
+                </button>
+                <a href="#about" class="w-full sm:w-auto border border-white/80 text-white px-8 py-4 font-heading font-bold text-xl uppercase tracking-wider rounded-md hover:bg-white hover:text-gray-900 transition-all backdrop-blur-sm text-center bg-black/20">
+                    Get Membership Details
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="py-16 bg-light-200 border-b border-gray-200">
+        <div class="container mx-auto px-6">
+            <p class="text-center font-heading text-xl text-primary uppercase tracking-widest mb-10 font-bold">Don't just take our word for it</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:border-primary/30 transition-all hover:shadow-md">
+                    <div class="flex text-primary mb-3">★ ★ ★ ★ ★</div>
+                    <p class="text-gray-600 italic mb-4">"The vibe here is crazy! Not your typical crowded Delhi gym. So much space to actually breathe and do your supersets."</p>
+                    <p class="font-heading tracking-wide text-gray-900 font-bold uppercase">— Rahul S.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:border-primary/30 transition-all hover:shadow-md">
+                    <div class="flex text-primary mb-3">★ ★ ★ ★ ★</div>
+                    <p class="text-gray-600 italic mb-4">"Alok is an incredible trainer. He fixed my form in one week. Never felt so motivated to hit the gym every day."</p>
+                    <p class="font-heading tracking-wide text-gray-900 font-bold uppercase">— Simran K.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:border-primary/30 transition-all hover:shadow-md">
+                    <div class="flex text-primary mb-3">★ ★ ★ ★ ★</div>
+                    <p class="text-gray-600 italic mb-4">"Cleanest gym in Rohini pocket 18. The ventilation is superb and the energy is just extremely positive."</p>
+                    <p class="font-heading tracking-wide text-gray-900 font-bold uppercase">— Aman V.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-light-100 relative">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-primary/10 blur-[100px] rounded-full group-hover:bg-primary/20 transition-all duration-700"></div>
+                    <img src="Screenshot 2026-04-10 at 11.11.14 PM.png" alt="Q3 Fitness Environment" class="relative z-10 w-full rounded-2xl border border-gray-200 shadow-xl">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl border border-gray-100 shadow-2xl z-20 flex items-center gap-4 animate-float">
+                        <span class="material-icons-outlined text-4xl text-primary">groups</span>
+                        <div>
+                            <p class="font-heading text-3xl font-bold text-gray-900 leading-none">1000+</p>
+                            <p class="text-sm text-gray-500 uppercase tracking-wider font-semibold">Happy Members</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-primary font-heading tracking-widest uppercase font-bold mb-2">The Q3 Story</h2>
+                    <h3 class="text-4xl md:text-5xl font-heading font-black text-gray-900 uppercase leading-tight mb-6">More than just a gym. <br/><span class="text-gray-400">It's a community.</span></h3>
+                    <p class="text-lg text-gray-600 mb-6 font-normal leading-relaxed">
+                        We noticed a problem in Rohini: gyms were either too crowded, lacked proper ventilation, or felt intimidating for beginners. 
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 font-normal leading-relaxed">
+                        <strong class="text-gray-900 font-bold">Q3 Fitness was built to be different.</strong> We focus on providing a spacious, energetic environment where everyone—from day-one beginners to intermediate lifters—feels supported. With our trainers leading the floor, you're never left guessing what to do next.
+                    </p>
+                    <ul class="space-y-4 font-heading text-xl uppercase tracking-wider">
+                        <li class="flex items-center gap-3 text-gray-800 font-bold"><span class="material-icons-outlined text-primary">check_circle</span> Zero Intimidation Zone</li>
+                        <li class="flex items-center gap-3 text-gray-800 font-bold"><span class="material-icons-outlined text-primary">check_circle</span> Unmatched Daily Motivation</li>
+                        <li class="flex items-center gap-3 text-gray-800 font-bold"><span class="material-icons-outlined text-primary">check_circle</span> Dedicated Trainer Support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-light-200 border-t border-gray-200">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-primary font-heading tracking-widest uppercase font-bold mb-2">Why Choose Us</h2>
+                <h3 class="text-4xl md:text-5xl font-heading font-black text-gray-900 uppercase">The Q3 Advantage</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white border border-gray-100 shadow-sm p-8 rounded-xl group hover:shadow-lg transition-all duration-300 hover:border-primary/20">
+                    <div class="w-16 h-16 bg-gray-50 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <span class="material-icons-outlined text-3xl">air</span>
+                    </div>
+                    <h4 class="font-heading text-2xl text-gray-900 uppercase font-bold mb-3">Spacious & Ventilated</h4>
+                    <p class="text-gray-600">Say goodbye to claustrophobic workouts. Our gym is designed for maximum airflow and personal space.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-white border border-gray-100 shadow-sm p-8 rounded-xl group hover:shadow-lg transition-all duration-300 hover:border-primary/20">
+                    <div class="w-16 h-16 bg-gray-50 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <span class="material-icons-outlined text-3xl">sports_gymnastics</span>
+                    </div>
+                    <h4 class="font-heading text-2xl text-gray-900 uppercase font-bold mb-3">Certified Trainers</h4>
+                    <p class="text-gray-600">Our floor isn't managed by rookies. Get guidance from experienced pros who care about your form.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-white border border-gray-100 shadow-sm p-8 rounded-xl group hover:shadow-lg transition-all duration-300 hover:border-primary/20">
+                    <div class="w-16 h-16 bg-gray-50 rounded-lg flex items-center justify-center text-secondary mb-6 group-hover:scale-110 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
+                        <span class="material-icons-outlined text-3xl">restaurant_menu</span>
+                    </div>
+                    <h4 class="font-heading text-2xl text-gray-900 uppercase font-bold mb-3">Diet & Workout Support</h4>
+                    <p class="text-gray-600">It's 70% diet, 30% gym. We provide tailored nutritional guidance to ensure you hit your goals fast.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="bg-white border border-gray-100 shadow-sm p-8 rounded-xl group hover:shadow-lg transition-all duration-300 hover:border-primary/20">
+                    <div class="w-16 h-16 bg-gray-50 rounded-lg flex items-center justify-center text-primary mb-6 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <span class="material-icons-outlined text-3xl">fitness_center</span>
+                    </div>
+                    <h4 class="font-heading text-2xl text-gray-900 uppercase font-bold mb-3">Premium Equipment</h4>
+                    <p class="text-gray-600">All essential, well-maintained, high-tech machines and free weights to cover every muscle group.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="bg-white border border-gray-100 shadow-sm p-8 rounded-xl group hover:shadow-lg transition-all duration-300 hover:border-primary/20">
+                    <div class="w-16 h-16 bg-gray-50 rounded-lg flex items-center justify-center text-secondary mb-6 group-hover:scale-110 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
+                        <span class="material-icons-outlined text-3xl">track_changes</span>
+                    </div>
+                    <h4 class="font-heading text-2xl text-gray-900 uppercase font-bold mb-3">Personalized Guidance</h4>
+                    <p class="text-gray-600">Whether it's muscle gain or weight loss, we map out a clear, actionable path just for you.</p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="bg-gradient-to-br from-primary to-orange-600 shadow-md p-8 rounded-xl group text-white">
+                    <div class="w-16 h-16 bg-white rounded-lg flex items-center justify-center text-primary mb-6 shadow-lg">
+                        <span class="material-icons-outlined text-3xl">bolt</span>
+                    </div>
+                    <h4 class="font-heading text-2xl text-white uppercase font-bold mb-3">Electric Environment</h4>
+                    <p class="text-white/90">The lighting, the music, the people—everything is curated to make you want to push harder.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Are For Section -->
+    <section id="audience" class="py-24 bg-white relative overflow-hidden border-t border-gray-100">
+        <div class="absolute -left-[20%] -translate-y-1/2 top-1/2 text-[20rem] font-heading font-black text-gray-50 uppercase whitespace-nowrap z-0 pointer-events-none">
+            Your Tribe
+        </div>
+        
+        <div class="container mx-auto px-6 max-w-6xl relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-primary font-heading tracking-widest uppercase font-bold mb-2">Find Your Tribe</h2>
+                <h3 class="text-4xl md:text-5xl font-heading font-black text-gray-900 uppercase">Who is Q3 For?</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Audience 1 -->
+                <div class="bg-white border border-gray-100 shadow-sm p-8 rounded-xl group hover:shadow-lg transition-all duration-300 hover:border-primary/20 text-center">
+                    <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center text-primary mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-icons-outlined text-3xl">school</span>
+                    </div>
+                    <h4 class="font-heading text-2xl text-gray-900 uppercase font-bold mb-3">Young Professionals</h4>
+                    <p class="text-gray-600">A high-energy release for the 18-35 crowd balancing college and early careers.</p>
+                </div>
+
+                <!-- Audience 2 -->
+                <div class="bg-gradient-to-br from-primary to-orange-600 shadow-md p-8 rounded-xl group text-center text-white transform md:-translate-y-4">
+                    <div class="w-16 h-16 bg-white/20 backdrop-blur-md border border-white/30 rounded-full flex items-center justify-center text-white mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-icons-outlined text-3xl">directions_run</span>
+                    </div>
+                    <h4 class="font-heading text-2xl text-white uppercase font-bold mb-3">Beginners</h4>
+                    <p class="text-white/90">Intimidated by big gyms? We focus on absolute guidance, posture, and confidence-building from day one.</p>
+                </div>
+
+                <!-- Audience 3 -->
+                <div class="bg-white border border-gray-100 shadow-sm p-8 rounded-xl group hover:shadow-lg transition-all duration-300 hover:border-primary/20 text-center">
+                    <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center text-primary mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-icons-outlined text-3xl">fitness_center</span>
+                    </div>
+                    <h4 class="font-heading text-2xl text-gray-900 uppercase font-bold mb-3">Intermediate Lifters</h4>
+                    <p class="text-gray-600">Looking for a motivating environment without the crowds? You've found your new lifting sanctuary.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-24 bg-light-200 border-t border-gray-200">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-primary font-heading tracking-widest uppercase font-bold mb-2">The Setup</h2>
+                    <h3 class="text-4xl md:text-5xl font-heading font-black text-gray-900 uppercase">Step Inside Q3</h3>
+                </div>
+                <button onclick="openModal()" class="hidden md:flex items-center gap-2 text-primary font-bold hover:text-gray-900 transition-colors font-heading text-lg uppercase tracking-wider">
+                    Join the Vibe <span class="material-icons-outlined">arrow_forward</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
+                <!-- Image 1 -->
+                <div class="rounded-2xl overflow-hidden aspect-[4/3] group relative cursor-pointer shadow-md border border-gray-200">
+                    <img src="Screenshot 2026-04-10 at 11.12.07 PM.png" alt="Gym Equipment" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+                </div>
+                <!-- Image 2 -->
+                <div class="rounded-2xl overflow-hidden aspect-[4/3] group relative cursor-pointer sm:mt-12 shadow-md border border-gray-200">
+                    <img src="Screenshot 2026-04-10 at 11.11.02 PM.png" alt="Free Weights Area" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 relative overflow-hidden bg-white border-t border-gray-200">
+        <!-- Background elements -->
+        <div class="absolute inset-0 bg-gradient-to-br from-white to-gray-50"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-[100px]"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center max-w-4xl">
+            <h2 class="text-5xl md:text-7xl font-heading font-black text-gray-900 uppercase leading-tight mb-8">
+                Ready to Start Your <br/>
+                <span class="text-primary drop-shadow-sm">Fitness Journey?</span>
+            </h2>
+            <p class="text-xl text-gray-600 mb-10 font-normal">Stop pushing it to tomorrow. Experience the Q3 vibe yourself with a complimentary trial session.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <button onclick="openModal()" class="w-full sm:w-auto bg-primary text-white px-10 py-5 font-heading font-bold text-2xl uppercase tracking-wider rounded-md shadow-lg shadow-primary/30 hover:shadow-[0_0_20px_rgba(229,9,20,0.6)] transition-all transform hover:-translate-y-1">
+                    Book a Free Trial Session
+                </button>
+                <a href="#contact" class="text-gray-900 font-heading font-bold uppercase tracking-wider hover:text-primary transition-colors hover:underline underline-offset-8 decoration-primary">
+                    Contact for Pricing
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact -->
+    <section id="contact" class="py-24 bg-light-200 border-t border-gray-200">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-primary font-heading tracking-widest uppercase font-bold mb-2">Visit Us</h2>
+                    <h3 class="text-4xl md:text-5xl font-heading font-black text-gray-900 uppercase mb-10">We are in Rohini</h3>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4 group">
+                            <div class="w-12 h-12 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                                <span class="material-icons-outlined">location_on</span>
+                            </div>
+                            <div>
+                                <h4 class="font-heading text-2xl text-gray-900 uppercase font-bold mb-1">Address</h4>
+                                <p class="text-gray-600">18/1, Sector 15, Pocket 18,<br/>Rohini, Delhi 110089</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 group cursor-pointer" onclick="window.location.href='tel:+919876543210'">
+                            <div class="w-12 h-12 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                                <span class="material-icons-outlined">call</span>
+                            </div>
+                            <div>
+                                <h4 class="font-heading text-2xl text-gray-900 uppercase font-bold mb-1">Call Us</h4>
+                                <p class="text-gray-600 group-hover:text-primary transition-colors">+91 98765 43210</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 group">
+                            <div class="w-12 h-12 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                                <span class="material-icons-outlined">schedule</span>
+                            </div>
+                            <div>
+                                <h4 class="font-heading text-2xl text-gray-900 uppercase font-bold mb-1">Timing</h4>
+                                <p class="text-gray-600">Everyday: 5:30 AM – 11:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h-[400px] lg:h-auto rounded-2xl overflow-hidden shadow-lg border border-gray-200 transition-all duration-700">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13998.665988514107!2d77.123281!3d28.730303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d016a49009769%3A0x6b4eb54d37307049!2sSector%2015%2C%20Rohini%2C%20Delhi!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 pt-16 pb-8">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-800 pb-10 mb-8">
+                <div>
+                    <a href="#" class="text-3xl font-heading font-black tracking-widest text-white uppercase flex items-center gap-2 mb-4">
+                        <span class="text-primary text-4xl">Q3</span> Fitness
+                    </a>
+                    <p class="text-gray-400 font-light mb-6 pr-4">Rohini's premier fitness destination designed for results, energy, and community.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-icons-outlined text-[20px]">facebook</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-icons-outlined text-[20px]">photo_camera</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-icons-outlined text-[20px]">play_circle</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-xl text-white uppercase font-bold mb-6 tracking-wider">Quick Links</h4>
+                    <ul class="space-y-3 font-body text-gray-400">
+                        <li><a href="#about" class="hover:text-primary transition-colors">About Story</a></li>
+                        <li><a href="#features" class="hover:text-primary transition-colors">Gym Facilities</a></li>
+                        <li><a href="#audience" class="hover:text-primary transition-colors">Who We Are For</a></li>
+                        <li><a href="#" onclick="openModal(); return false;" class="hover:text-primary transition-colors">Book Free Trial</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-xl text-white uppercase font-bold mb-6 tracking-wider">Ready to Transform?</h4>
+                    <p class="text-gray-400 font-light mb-4">Join our WhatsApp community for fitness tips and gym updates.</p>
+                    <a href="https://wa.me/919876543210" target="_blank" class="inline-flex items-center gap-2 text-white border border-gray-700 px-6 py-3 rounded-md hover:border-primary hover:text-primary hover:bg-gray-800 transition-colors font-heading uppercase tracking-wider font-bold">
+                        <span class="material-icons-outlined">chat</span> Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+                <p>&copy; 2026 Q3 Fitness, Delhi. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-gray-300 transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-300 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Action Button -->
+    <a href="https://wa.me/919876543210" target="_blank" class="fixed bottom-6 left-6 z-40 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg shadow-[#25D366]/40 hover:scale-110 transition-transform">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+
+    <!-- Lead Form Modal -->
+    <div id="lead-modal" class="fixed inset-0 bg-gray-900/80 backdrop-blur-sm z-[100] hidden flex items-center justify-center p-4">
+        <div class="bg-white border border-gray-200 shadow-2xl rounded-2xl w-full max-w-md p-8 relative scale-95 opacity-0 transition-all duration-300" id="modal-content">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-primary transition-colors">
+                <span class="material-icons-outlined">close</span>
+            </button>
+            
+            <h3 class="text-3xl font-heading font-black text-gray-900 uppercase mb-2">Claim Free Trial</h3>
+            <p class="text-gray-600 mb-6 font-normal">Fill out the form below. Our trainer will contact you to schedule your session.</p>
+            
+            <form id="lead-form" onsubmit="submitForm(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-heading tracking-wider uppercase text-gray-500 font-bold mb-1">Name</label>
+                    <input type="text" required class="w-full bg-gray-50 border border-gray-300 rounded-md px-4 py-3 text-gray-900 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="John Doe">
+                </div>
+                <div>
+                    <label class="block text-sm font-heading tracking-wider uppercase text-gray-500 font-bold mb-1">Phone Number</label>
+                    <input type="tel" required class="w-full bg-gray-50 border border-gray-300 rounded-md px-4 py-3 text-gray-900 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="+91 90000 00000">
+                </div>
+                <div>
+                    <label class="block text-sm font-heading tracking-wider uppercase text-gray-500 font-bold mb-1">Primary Goal</label>
+                    <select class="w-full bg-gray-50 border border-gray-300 rounded-md px-4 py-3 text-gray-900 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors appearance-none cursor-pointer">
+                        <option value="weight_loss">Weight Loss</option>
+                        <option value="muscle_gain">Muscle Gain</option>
+                        <option value="general_fitness">General Fitness</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-primary text-white shadow-md shadow-primary/30 font-heading font-bold uppercase tracking-wider text-xl py-4 rounded-md mt-4 hover:bg-secondary transition-colors">
+                    Get Free Pass
+                </button>
+            </form>
+            
+            <!-- Success Message -->
+            <div id="success-msg" class="hidden text-center py-8">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 mx-auto mb-4 border border-green-200">
+                    <span class="material-icons-outlined text-3xl">check</span>
+                </div>
+                <h4 class="text-2xl font-heading font-black text-gray-900 uppercase mb-2">Got It!</h4>
+                <p class="text-gray-600">Our team will call you within 24 hours.</p>
+                <button onclick="closeModal()" class="mt-6 border border-gray-300 text-gray-700 px-6 py-2 rounded-md font-heading uppercase tracking-wider hover:bg-gray-100 font-bold transition-colors">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
