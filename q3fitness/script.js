@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const navTextLogo = document.querySelector('#navbar > a');
     const navLinks = document.querySelectorAll('#navbar nav a');
     const navIcon = document.querySelector('#mobile-menu-btn');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
     
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -33,34 +37,60 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.classList.add('bg-transparent', 'py-4');
             navbar.classList.remove('py-2');
 
-            // Set text back to white
-            navTextLogo.classList.add('text-white');
-            navTextLogo.classList.remove('text-gray-900');
-            
-            navLinks.forEach(link => {
-                link.classList.add('text-white/90');
-                link.classList.remove('text-gray-900');
-            });
-            
-            navIcon.classList.add('text-white');
-            navIcon.classList.remove('text-gray-900');
+            // Set text back to white if menu is not open
+            if (!navbar.classList.contains('menu-open')) {
+                navTextLogo.classList.add('text-white');
+                navTextLogo.classList.remove('text-gray-900');
+                
+                navLinks.forEach(link => {
+                    link.classList.add('text-white/90');
+                    link.classList.remove('text-gray-900');
+                });
+                
+                navIcon.classList.add('text-white');
+                navIcon.classList.remove('text-gray-900');
+            }
         }
     });
 
     // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const closeMenuBtn = document.getElementById('close-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-
     const toggleMenu = () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        
         mobileMenu.classList.toggle('hidden');
         mobileMenu.classList.toggle('flex');
         document.body.classList.toggle('overflow-hidden');
+        
+        if (isHidden) {
+            // Opening menu
+            menuIcon.classList.add('hidden', 'opacity-0');
+            closeIcon.classList.remove('hidden');
+            setTimeout(() => closeIcon.classList.remove('opacity-0'), 10);
+            
+            navbar.classList.add('menu-open');
+            // Force dark color since menu is white text on white bg
+            navIcon.classList.remove('text-white');
+            navIcon.classList.add('text-gray-900');
+            navTextLogo.classList.remove('text-white');
+            navTextLogo.classList.add('text-gray-900');
+        } else {
+            // Closing menu
+            closeIcon.classList.add('hidden', 'opacity-0');
+            menuIcon.classList.remove('hidden');
+            setTimeout(() => menuIcon.classList.remove('opacity-0'), 10);
+            
+            navbar.classList.remove('menu-open');
+            // Restore colors based on scroll position
+            if (window.scrollY <= 50) {
+                navIcon.classList.add('text-white');
+                navIcon.classList.remove('text-gray-900');
+                navTextLogo.classList.add('text-white');
+                navTextLogo.classList.remove('text-gray-900');
+            }
+        }
     };
 
-    mobileMenuBtn.addEventListener('click', toggleMenu);
-    closeMenuBtn.addEventListener('click', toggleMenu);
+    navIcon.addEventListener('click', toggleMenu);
 
     mobileLinks.forEach(link => {
         link.addEventListener('click', toggleMenu);
